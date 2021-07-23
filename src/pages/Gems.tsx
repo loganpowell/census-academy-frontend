@@ -7,37 +7,10 @@ export const Gems = ({ data }) => {
     const items = data
     return <div style={{ display: "flex"}}>
         {items.map((item, idx) => {
-            /*
-            
-          "id": "bd5492a9-8a19-4446-8cc6-d5d7847324da",
-          "type": "A_GEM",
-          "assets": {
-            "items": [
-              {
-                "type": "T_BODY",
-                "name": "Body",
-                "content": "Some sample markdown content!\n\\n# Heading 1\n\\n## Heading 2\n\\n### Heading 3\n\\nthis is some code but it's not really being rendered as code i wonder why\n\\nBut it's not being rendered correctly! Oh no!\n\\\nRandom image example\n\",
-                "index": 1
-              },
-              {
-                "type": "T_OG_TITLE",
-                "name": "Title",
-                "content": "Example Title",
-                "index": 0
-              },
-              {
-                "type": "A_VIDEO",
-                "name": "Video",
-                "content": "https://youtu.be/RSdqooZIRwI",
-                "index": 2
-              }
-            ]
-          }
-          */
           
           const assets = item?.assets?.items
           if(!assets.length) return null
-          console.log({assets})
+        //  console.log({assets})
           const { cover, title, body } = assets.reduce((a, c) => {
               const { type, name, content } = c
               switch(type){
