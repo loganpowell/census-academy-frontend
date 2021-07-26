@@ -1,4 +1,8 @@
 import React from "react"
+import { unified } from 'unified'
+import parse from 'remark-parse'
+import remark2react from 'remark-react'
+
 import { Card } from "antd"
 const { Meta } = Card
 
@@ -14,12 +18,14 @@ export const Gems = ({ data }) => {
           const { cover, title, body } = assets.reduce((a, c) => {
               const { type, name, content } = c
               switch(type){
-                  case "T_BODY": 
-                      return (a.body = content, a)
+                  case "T_BODY": {
+                      const b = unified().use(parse).use(remark2react).processSync(content).result
+                      return (a.body = b, a)
+                  }
                   case "A_VIDEO":{
                       const parts = content.split("/")
                       const id = parts[parts.length - 1]
-                      return (a.cover = `https://img.youtube.com/vi/${id}/1.jpg`, a)
+                      return (a.cover = `https://img.youtube.com/vi/${id}/0.jpg`, a)
                   }
                   case "A_IMAGE":
                       return (a.cover = content, a)
