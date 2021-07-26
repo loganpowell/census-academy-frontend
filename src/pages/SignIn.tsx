@@ -12,7 +12,7 @@ const required_fields = [
 ]
 
 export const SignIn = ({ data }) => {
-    console.log("SignIn page data:", data)
+    //console.log("SignIn page data:", data)
     return (
         <AmplifyAuthenticator>
             <AmplifySignIn slot="sign-in" formFields={required_fields} />

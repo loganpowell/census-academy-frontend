@@ -12,20 +12,22 @@
         "no-native-reassign": 0,
         "no-negated-in-lhs": 0,
         "no-unreachable": 1,
+        "no-console": 1,
+        "no-use-before-define": 0,
+        "no-restricted-globals": 1,
         "@typescript-eslint/explicit-function-return-type": 0,
         "@typescript-eslint/explicit-module-boundary-types": 0,
         "@typescript-eslint/no-unused-expressions": 1,
         "@typescript-eslint/ban-ts-comment": 0,
         "@typescript-eslint/no-explicit-any": 0,
         "@typescript-eslint/no-unused-vars": 0,
-        "@typescript-eslint/no-var-requires": 1,
-        "no-console": 0,
-        "no-use-before-define": 0
+        "@typescript-eslint/no-var-requires": 1
     },
     "extends": [
         "react-app",
         "react-app/jest",
         "eslint:recommended",
+        "plugin:json/recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:react-hooks/recommended"

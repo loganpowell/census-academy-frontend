@@ -6837,6 +6837,14 @@
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
+"eslint-plugin-json@^3.0.0":
+  "integrity" "sha512-7qoY5pbzBLEttJWy4/cDtULK3EKglgIwfXk5Yqp3StJaQ4Bu4Jmp0n2fJN5vBe/hLGaECupq3edn1j/k7O0bFA=="
+  "resolved" "https://registry.npmjs.org/eslint-plugin-json/-/eslint-plugin-json-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "lodash" "^4.17.21"
+    "vscode-json-languageservice" "^4.0.2"
+
 "eslint-plugin-jsx-a11y@^6.3.1":
   "integrity" "sha512-0rGPJBbwHoGNPU73/QCLP/vveMlM1b1Z9PponxO87jfr6tuH5ligXbDT6nHSSzBC8ovX2Z+BQu7Bk5D/Xgq9zg=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.4.1.tgz"
@@ -9225,6 +9233,11 @@
   "version" "2.2.0"
   dependencies:
     "minimist" "^1.2.5"
+
+"jsonc-parser@^3.0.0":
+  "integrity" "sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA=="
+  "resolved" "https://registry.npmjs.org/jsonc-parser/-/jsonc-parser-3.0.0.tgz"
+  "version" "3.0.0"
 
 "jsonfile@^4.0.0":
   "integrity" "sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss="
@@ -14352,6 +14365,37 @@
   "integrity" "sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ=="
   "resolved" "https://registry.npmjs.org/vm-browserify/-/vm-browserify-1.1.2.tgz"
   "version" "1.1.2"
+
+"vscode-json-languageservice@^4.0.2":
+  "integrity" "sha512-DIKb3tcfRtb3tIE6g9SLOl5E9tNSt6kljH08Wa5RwFlVshtXGrDDzttchze4CYy9pJpE9mBtCbRHmLvY1Z1ZXA=="
+  "resolved" "https://registry.npmjs.org/vscode-json-languageservice/-/vscode-json-languageservice-4.1.6.tgz"
+  "version" "4.1.6"
+  dependencies:
+    "jsonc-parser" "^3.0.0"
+    "vscode-languageserver-textdocument" "^1.0.1"
+    "vscode-languageserver-types" "^3.16.0"
+    "vscode-nls" "^5.0.0"
+    "vscode-uri" "^3.0.2"
+
+"vscode-languageserver-textdocument@^1.0.1":
+  "integrity" "sha512-UIcJDjX7IFkck7cSkNNyzIz5FyvpQfY7sdzVy+wkKN/BLaD4DQ0ppXQrKePomCxTS7RrolK1I0pey0bG9eh8dA=="
+  "resolved" "https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.1.tgz"
+  "version" "1.0.1"
+
+"vscode-languageserver-types@^3.16.0":
+  "integrity" "sha512-k8luDIWJWyenLc5ToFQQMaSrqCHiLwyKPHKPQZ5zz21vM+vIVUSvsRpcbiECH4WR88K2XZqc4ScRcZ7nk/jbeA=="
+  "resolved" "https://registry.npmjs.org/vscode-languageserver-types/-/vscode-languageserver-types-3.16.0.tgz"
+  "version" "3.16.0"
+
+"vscode-nls@^5.0.0":
+  "integrity" "sha512-u0Lw+IYlgbEJFF6/qAqG2d1jQmJl0eyAGJHoAJqr2HT4M2BNuQYSEiSE75f52pXHSJm8AlTjnLLbBFPrdz2hpA=="
+  "resolved" "https://registry.npmjs.org/vscode-nls/-/vscode-nls-5.0.0.tgz"
+  "version" "5.0.0"
+
+"vscode-uri@^3.0.2":
+  "integrity" "sha512-jkjy6pjU1fxUvI51P+gCsxg1u2n8LSt0W6KrCNQceaziKzff74GoWmjVG46KieVzybO1sttPQmYfrwSHey7GUA=="
+  "resolved" "https://registry.npmjs.org/vscode-uri/-/vscode-uri-3.0.2.tgz"
+  "version" "3.0.2"
 
 "w3c-hr-time@^1.0.2":
   "integrity" "sha512-z8P5DvDNjKDoFIHK7q8r8lackT6l+jo/Ye3HOle7l9nICP9lf1Ci25fy9vHd0JOWewkIFzXIEig3TdKT7JQ5fQ=="

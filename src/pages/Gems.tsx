@@ -7,7 +7,7 @@ import { Card } from "antd"
 const { Meta } = Card
 
 export const Gems = ({ data }) => {
-    console.log("Gems data:",  data )
+    //console.log("Gems data:",  data )
     const items = data
     return <div style={{ display: "flex"}}>
         {items.map((item, idx) => {
@@ -19,6 +19,7 @@ export const Gems = ({ data }) => {
               const { type, name, content } = c
               switch(type){
                   case "T_BODY": {
+                    //  console.log("content:", content)
                       const b = unified().use(parse).use(remark2react).processSync(content).result
                       return (a.body = b, a)
                   }
@@ -39,7 +40,7 @@ export const Gems = ({ data }) => {
           return <Card
               key={idx}
               hoverable
-              style={{ width: 240, margin: '1rem', alignSelf: "flex-start"}}
+              style={{ width: "33%", margin: '1rem', alignSelf: "flex-start"}}
               cover={<img alt={title} src={cover} />}
             >
               <Meta title={title} description={body} />

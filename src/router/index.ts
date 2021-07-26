@@ -36,7 +36,7 @@ export const routerCfg = async url => {
     const match = URL2obj(url)
     //const { URL_DOMN, URL_FULL, URL_HASH, URL_PATH, URL_QERY, URL_SUBD } = match
 
-    console.log({ match })
+    //console.log({ match })
     //let { } = URL_QERY
 
     //limit = parseInt(limit)
