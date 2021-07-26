@@ -11,7 +11,7 @@ import { node, API, utils } from "cope-client-utils"
 //import { Chrome } from "../layout"
 import { queries } from "../graphql"
 import { log } from "../utils"
-import { Page1, Page2, Page3, SignIn, Gems } from "../pages"
+import { Page1, Page2, Page3, SignIn, Gems, Landing } from "../pages"
 import { CRUD } from "cope-client-utils/lib/utils"
 import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
 
@@ -54,7 +54,7 @@ export const routerCfg = async url => {
         new EquivMap(
             [
                 [
-                    { ...match, URL_PATH: [ "gems" ] },
+                    { ...match, URL_PATH: ["gems"] },
                     {
                         URL_DATA: async () => {
                             const res = await CRUD({
@@ -94,7 +94,7 @@ export const routerCfg = async url => {
                     },
                 ],
                 [
-                    { ...match, URL_PATH: [ "sign-in" ] },
+                    { ...match, URL_PATH: ["sign-in"] },
                     {
                         URL_DATA: async () => {
                             const list = await utils.CRUD(dummy_query)
@@ -110,7 +110,7 @@ export const routerCfg = async url => {
                     },
                 ],
                 [
-                    { ...match, URL_PATH: [ "page2" ] },
+                    { ...match, URL_PATH: ["page2"] },
                     {
                         URL_DATA: async () => {
                             const list = await utils.CRUD(dummy_query)
@@ -125,7 +125,23 @@ export const routerCfg = async url => {
                         URL_PAGE: () => Page2,
                     },
                 ],
-            ],
+                [
+                    { ...match, URL_PATH: ["landing"] },
+                    {
+                        URL_DATA: async () => {
+                            const list = await utils.CRUD(dummy_query)
+                            return {
+                                DOM_HEAD: {
+                                    title: "Test Landing",
+                                    og_description: "Test landing page",
+                                },
+                                DOM_BODY: { data: list },
+                            }
+                        },
+                        URL_PAGE: () => Landing,
+                    },
+                ],
+            ]
             // TODO: create actual 404 Page
         ).get(match) || {
             [K.URL_DATA]: () => ({ DOM_HEAD: { title: "404" }, DOM_BODY: { data: 404 } }),

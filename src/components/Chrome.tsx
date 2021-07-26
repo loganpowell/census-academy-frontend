@@ -6,6 +6,7 @@ import { primary_color } from "../theme/colors.js"
 import { CTX, default_context } from "../context"
 import { Breadcrumbs, Header } from "../components"
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components"
+import { CensusAcademyFooter } from "./CensusAcademyFooter"
 
 import { Layout, Menu, Breadcrumb } from "antd"
 
@@ -32,8 +33,8 @@ const {
 } = AuthState
 
 export const Chrome = ({ children }) => {
-    const [ authState, setAuthState ] = useState()
-    const [ user, setUser ] = useState()
+    const [authState, setAuthState] = useState()
+    const [user, setUser] = useState()
 
     console.log({ authState, user })
     useEffect(
@@ -53,14 +54,17 @@ export const Chrome = ({ children }) => {
         },
         // authState is a string, so equality checks don't
         // fire arbitrary rerenderings
-        [ authState ],
+        [authState]
     )
 
     return (
         <Layout>
             <Header authState={authState} user={user} />
             <Content className="site-layout" style={{ padding: "0 50px", marginTop: 64 }}>
-                <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+                <div
+                    className="site-layout-background"
+                    style={{ padding: "0 24px", minHeight: 380 }}
+                >
                     <CTX.Provider
                         value={{
                             ...default_context,
@@ -72,7 +76,9 @@ export const Chrome = ({ children }) => {
                     </CTX.Provider>
                 </div>
             </Content>
-            <Footer style={{ textAlign: "center" }}>Census Academy</Footer>
+            <Footer style={{ background: primary_color }}>
+                <CensusAcademyFooter />
+            </Footer>
         </Layout>
     )
 }
