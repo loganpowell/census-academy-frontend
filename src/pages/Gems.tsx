@@ -46,7 +46,7 @@ const StyledHero = styled.div`
     background: rgb(2, 0, 36);
     background: linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(4, 131, 146, 1) 80%);
     text-align: center;
-    padding: 32px;
+    padding: 48px;
 
     @media (max-width: 400px) {
         margin-left: -20%;
@@ -113,6 +113,11 @@ export const Gems = ({ data }) => {
                     const { id } = item
                     const assets = item?.assets?.items
                     const date = Date.parse(item?.createdAt)
+                    const formattedDate = new Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                    }).format(date)
                     const { cover, title, body } = assets.reduce(
                         (a, c) => {
                             const { type, name, content } = c
@@ -146,11 +151,7 @@ export const Gems = ({ data }) => {
                             <DataGemCard
                                 image={cover}
                                 title={title}
-                                date={new Intl.DateTimeFormat("en-US", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                }).format(date)}
+                                date={formattedDate}
                                 link={`/gems/${id}`}
                             />
                         </Col>
