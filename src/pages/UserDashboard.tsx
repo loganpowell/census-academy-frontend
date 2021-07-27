@@ -170,13 +170,11 @@ const CourseCard = ({ type, image, title, link }) => {
     )
 }
 const WebinarDate = styled.p`
-font-size: 1rem;
-font-weight: bold;
-margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
 `
 const WebinarCard = ({ title, date, description, link }) => {
-
-
     return (
         <StyledCard>
             <h2>{title}</h2>
@@ -192,18 +190,18 @@ const WebinarCard = ({ title, date, description, link }) => {
 }
 
 const GemWrapper = styled.div`
-margin: 0px 8px;
+    margin: 0px 8px;
 `
 
 const GemCardHeader = styled.h2`
-font-size: 0.8rem;
-font-weight: bold;
-margin: 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin: 0;
 `
 
 const GemDate = styled.p`
-margin: 0;
-font-size: 0.8rem;
+    margin: 0;
+    font-size: 0.8rem;
 `
 const DataGemCard = ({ image, title, date, link }) => {
     return (
