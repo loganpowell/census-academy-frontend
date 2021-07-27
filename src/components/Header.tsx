@@ -36,14 +36,28 @@ export const Header = ({ authState, user }) => {
         <HEADER style={{ position: "fixed", zIndex: 1, width: "100%", padding: "0 1rem" }}>
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[ "2" ]}>
                 <Menu.Item key="1">
-                    <img
-                        src={process.env.PUBLIC_URL + "us-census-bureau-logo-white.svg"}
-                        alt="US Census Bureau logo"
-                        style={{ width: "6rem" }}
-                    />
+                    <a href="/">
+                        <img
+                            src={process.env.PUBLIC_URL + "us-census-bureau-logo-white.svg"}
+                            alt="US Census Bureau logo"
+                            style={{ width: "6rem" }}
+                        />
+                    </a>
                 </Menu.Item>
                 <Menu.Item key="2" style={{}}>
-                    <Link to="gems">Gems</Link>
+                    <Link to="gems">Data Gems</Link>
+                </Menu.Item>
+                <Menu.Item key="3">
+                    <Link to="#">Webinars</Link>
+                </Menu.Item>
+                <Menu.Item key="4">
+                    <Link to="#">Courses</Link>
+                </Menu.Item>
+                <Menu.Item key="5">
+                    <Link to="#">About</Link>
+                </Menu.Item>
+                <Menu.Item key="6">
+                    {authState === SignedIn && <Link to="user">User Dashboard</Link>}
                 </Menu.Item>
                 <Menu.Item key="3" style={{ marginLeft: "auto" }}>
                     {authState === SignedIn ? (

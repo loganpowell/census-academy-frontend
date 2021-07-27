@@ -7,6 +7,7 @@ import { primary_color } from "../theme/colors.js"
 import { CTX, default_context } from "../context"
 import { Breadcrumbs, Header } from "../components"
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components"
+import { CensusAcademyFooter } from "./CensusAcademyFooter"
 
 import { Layout } from "antd"
 
@@ -43,7 +44,10 @@ export const Chrome = ({ authUser, children }) => {
         <Layout>
             <Header authState={authState} user={user} />
             <Content className="site-layout" style={{ padding: "0 50px", marginTop: 64 }}>
-                <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
+                <div
+                    className="site-layout-background"
+                    style={{ padding: "0 256px", minHeight: 380 }}
+                >
                     <CTX.Provider
                         value={{
                             ...default_context,
@@ -55,7 +59,9 @@ export const Chrome = ({ authUser, children }) => {
                     </CTX.Provider>
                 </div>
             </Content>
-            <Footer style={{ textAlign: "center" }}>Census Academy</Footer>
+            <Footer style={{ background: primary_color }}>
+                <CensusAcademyFooter />
+            </Footer>
         </Layout>
     )
 }
