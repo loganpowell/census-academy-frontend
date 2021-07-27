@@ -3,8 +3,8 @@ import { CTX } from "../context"
 import { NAV } from "../commands"
 import { run$ } from "@-0/spool"
 
-export const Link = ({ to, style = {}, children }) => {
-    const path = `/${to}`
+export const Link = ({ href, style = {}, children }) => {
+    const path = `/${href}`
     //log({ path })
     return (
         <a

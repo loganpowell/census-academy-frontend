@@ -43,7 +43,7 @@ export const Header = ({ authState, user }) => {
                     </a>
                 </Menu.Item>
                 <Menu.Item key="2" style={{}}>
-                    <Link to="gems">Data Gems</Link>
+                    <Link href="gems">Data Gems</Link>
                 </Menu.Item>
                 {/* TODO front end pages and routes for webinars and courses */}
                 {/* <Menu.Item key="3">

@@ -22,7 +22,7 @@ const SignUp = () => <AmplifySignUp slot="sign-up" formFields={required_fields} 
 
 export const SignInButton = ({ style = {} }) => {
     return (
-        <Link to="sign-in" style={style}>
+        <Link href="sign-in" style={style}>
             Sign In
         </Link>
     )

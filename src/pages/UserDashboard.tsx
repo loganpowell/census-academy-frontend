@@ -156,12 +156,12 @@ const CourseCard = ({ type, image, title, link }) => {
             <h2>{title}</h2>
             <CenteredWrapper>
                 {type === "course" && (
-                    <Link to={link} style={LinkStyles}>
+                    <Link href={link} style={LinkStyles}>
                         Continue Course
                     </Link>
                 )}
                 {type === "dataChallenge" && (
-                    <Link to={link} style={LinkStyles}>
+                    <Link href={link} style={LinkStyles}>
                         Take the Challenge
                     </Link>
                 )}
@@ -181,7 +181,7 @@ const WebinarCard = ({ title, date, description, link }) => {
             <WebinarDate>{date}</WebinarDate>
             <p>{description}</p>
             <CenteredWrapper>
-                <Link to={link} style={LinkStyles}>
+                <Link href={link} style={LinkStyles}>
                     Watch Webinar
                 </Link>
             </CenteredWrapper>
@@ -206,7 +206,7 @@ const GemDate = styled.p`
 const DataGemCard = ({ image, title, date, link }) => {
     return (
         <GemWrapper>
-            <Link to={link}>
+            <Link href={link}>
                 <Image src={image} alt={title} />
             </Link>
             <GemCardHeader>{title}</GemCardHeader>
