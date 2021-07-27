@@ -45,19 +45,19 @@ export const Header = ({ authState, user }) => {
                     </a>
                 </Menu.Item>
                 <Menu.Item key="2" style={{}}>
-                    <Link to="gems">Data Gems</Link>
+                    <Link href="gems">Data Gems</Link>
                 </Menu.Item>
                 <Menu.Item key="3">
-                    <Link to="#">Webinars</Link>
+                    <Link href="#">Webinars</Link>
                 </Menu.Item>
                 <Menu.Item key="4">
-                    <Link to="#">Courses</Link>
+                    <Link href="#">Courses</Link>
                 </Menu.Item>
                 <Menu.Item key="5">
-                    <Link to="#">About</Link>
+                    <Link href="#">About</Link>
                 </Menu.Item>
                 <Menu.Item key="6">
-                    {(authState === SignedIn || user) && <Link to="user">User Dashboard</Link>}
+                    {(authState === SignedIn || user) && <Link href="user">User Dashboard</Link>}
                 </Menu.Item>
                 <Menu.Item key="7" style={{ marginLeft: "auto" }}>
                     {authState === SignedIn ? (

@@ -33,7 +33,7 @@ const GemDate = styled.p`
 const DataGemCard = ({ image, title, date, link }) => {
     return (
         <GemWrapper>
-            <Link to={link}>
+            <Link href={link}>
                 <Image src={image} alt={title} />
             </Link>
             <GemCardHeader>{title}</GemCardHeader>
