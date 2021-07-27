@@ -63,7 +63,7 @@ export const Chrome = ({ children }) => {
             <Content className="site-layout" style={{ padding: "0 50px", marginTop: 64 }}>
                 <div
                     className="site-layout-background"
-                    style={{ padding: "0 24px", minHeight: 380 }}
+                    style={{ padding: "0 256px", minHeight: 380 }}
                 >
                     <CTX.Provider
                         value={{
