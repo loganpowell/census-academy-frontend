@@ -15,10 +15,6 @@ declare namespace awsmobile {
     const aws_appsync_region: string;
     const aws_appsync_authenticationType: string;
     const aws_appsync_apiKey: string;
-    const aws_appsync_dangerously_connect_to_http_endpoint_for_testing: boolean;
-    function graphql_headers(): Promise<{
-        Authorization: string;
-    } | {
-        Authorization?: undefined;
-    }>;
+    const aws_user_files_s3_bucket: string;
+    const aws_user_files_s3_bucket_region: string;
 }

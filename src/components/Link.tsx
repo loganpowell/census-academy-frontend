@@ -10,9 +10,18 @@ export const Link = ({ to, style = {}, children }) => {
         <a
             href={path}
             onClick={e => {
-                //console.log({ e })
+                const { target, currentTarget } = e
+                //@ts-ignore
+                const href = target.href || path
+                const curr = currentTarget || document
                 e.preventDefault()
-                run$.next({ ...NAV, args: e })
+                run$.next({
+                    ...NAV,
+                    args: {
+                        target: { href },
+                        currentTarget: curr,
+                    },
+                })
             }}
             style={style}
         >

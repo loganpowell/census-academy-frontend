@@ -23,6 +23,7 @@ src/aws-exports.js
 # production
 build/
 dist/
+lib/
 node_modules/
 aws-exports.js
 awsconfiguration.json

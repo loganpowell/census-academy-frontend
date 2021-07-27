@@ -1,1 +1,1 @@
-export {};
+import "./theme/App.less";

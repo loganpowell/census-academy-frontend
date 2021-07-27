@@ -17,9 +17,11 @@
         "react-dom": "^17.0.2",
         "react-draft-wysiwyg": "^1.14.7",
         "react-scripts": "4.0.3",
+        "react-youtube": "^7.13.1",
         "remark-parse": "^9.0.0",
         "remark-react": "^8.0.0",
         "styled-components": "^5.3.0",
+        "styled-system": "^5.1.5",
         "unified": "^10.0.1",
         "web-vitals": "^2.1.0"
     },
@@ -27,6 +29,7 @@
         "start": "craco start",
         "build": "craco build && mv build docs",
         "test": "craco test",
+        "types": "tsc --project tsconfig.json",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
