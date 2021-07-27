@@ -31,7 +31,8 @@ const dummy_query = {
     authMode: GRAPHQL_AUTH_MODE.API_KEY,
 }
 
-const publicQuery = ({ query, variables }) => CRUD({ query, variables, authMode: GRAPHQL_AUTH_MODE.API_KEY})
+const publicQuery = ({ query, variables }) =>
+    CRUD({ query, variables, authMode: GRAPHQL_AUTH_MODE.API_KEY })
 
 // TODO: return types expected for routerCfg
 export const routerCfg = async url => {
@@ -64,7 +65,7 @@ export const routerCfg = async url => {
                     {
                         URL_DATA: async () => {
                             // gems landing
-                            if(gems_path.length === 1) {
+                            if (gems_path.length === 1) {
                                 const res = await publicQuery({
                                     query: queries.getNodesByType,
                                     variables: { type: NodeType.A_GEM, status: NodeStatus.DRAFT },
@@ -78,32 +79,33 @@ export const routerCfg = async url => {
                                 }
                             }
                             // gem focus page
-                            if(gems_path.length === 2) {
+                            if (gems_path.length === 2) {
                                 const id = gems_path[1]
                                 const res = await publicQuery({
                                     query: queries.getNodeByID,
-                                    variables: { id }
+                                    variables: { id },
                                 })
-                                const { data: { getNode }} = res
-                                const { status, type, createdAt, updatedAt, owner, assets } = getNode
-                                if(assets.items){
+                                const {
+                                    data: { getNode },
+                                } = res
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+                                if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
-                                    const {T_OG_TITLE, A_VIDEO, T_BODY} = items
-                                    console.log({ items })
+                                    const { T_OG_TITLE, A_VIDEO, T_BODY } = items
                                     return {
                                         DOM_HEAD: {
-                                            title: T_OG_TITLE.content
+                                            title: T_OG_TITLE.content,
                                         },
-                                        DOM_BODY: items
+                                        DOM_BODY: items,
                                     }
                                 }
                             }
                         },
                         URL_PAGE: () => {
-                            if(gems_path.length === 1) return Gems
-                            if(gems_path.length === 2) return Gem
-                        }
-                            ,
+                            if (gems_path.length === 1) return Gems
+                            if (gems_path.length === 2) return Gem
+                        },
                     },
                 ],
                 [
