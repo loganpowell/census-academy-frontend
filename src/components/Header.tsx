@@ -30,7 +30,7 @@ const {
 } = AuthState
 
 export const Header = ({ authState, user }) => {
-    //console.log({ authState, user, SignedIn })
+    console.log({ authState, user, SignedIn })
 
     return (
         <HEADER style={{ position: "fixed", zIndex: 1, width: "100%", padding: "0 1rem" }}>
@@ -57,9 +57,9 @@ export const Header = ({ authState, user }) => {
                     <Link to="#">About</Link>
                 </Menu.Item>
                 <Menu.Item key="6">
-                    {authState === SignedIn && <Link to="user">User Dashboard</Link>}
+                    {(authState === SignedIn || user) && <Link to="user">User Dashboard</Link>}
                 </Menu.Item>
-                <Menu.Item key="3" style={{ marginLeft: "auto" }}>
+                <Menu.Item key="7" style={{ marginLeft: "auto" }}>
                     {authState === SignedIn ? (
                         <SignOutButton />
                     ) : authState === SignedOut ? (

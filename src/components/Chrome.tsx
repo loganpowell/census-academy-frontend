@@ -43,11 +43,11 @@ export const Chrome = ({ authUser, children }) => {
     return (
         <Layout>
             <Header authState={authState} user={user} />
-            <Content className="site-layout" style={{ padding: "0 50px", marginTop: 64 }}>
-                <div
-                    className="site-layout-background"
-                    style={{ padding: "0 256px", minHeight: 380 }}
-                >
+            <Content
+                className="site-layout"
+                style={{ padding: "0 50px", marginTop: 64, width: "100%" }}
+            >
+                <div className="site-layout-background" style={{ minHeight: 380 }}>
                     <CTX.Provider
                         value={{
                             ...default_context,

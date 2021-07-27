@@ -9,7 +9,7 @@ const { Meta } = Card
 export const Gems = ({ data }) => {
     //console.log("Gems data:",  data )
     const items = data
-    return <div style={{ display: "flex"}}>
+    return <div style={{ display: "flex", width: "100%"}}>
         {items.map((item, idx) => {
           
           const assets = item?.assets?.items

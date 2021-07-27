@@ -169,18 +169,18 @@ const CourseCard = ({ type, image, title, link }) => {
         </StyledCard>
     )
 }
-
+const WebinarDate = styled.p`
+font-size: 1rem;
+font-weight: bold;
+margin: 0;
+`
 const WebinarCard = ({ title, date, description, link }) => {
-    const Date = styled.p`
-        font-size: 1rem;
-        font-weight: bold;
-        margin: 0;
-    `
+
 
     return (
         <StyledCard>
             <h2>{title}</h2>
-            <Date>{date}</Date>
+            <WebinarDate>{date}</WebinarDate>
             <p>{description}</p>
             <CenteredWrapper>
                 <Link to={link} style={LinkStyles}>
@@ -191,30 +191,29 @@ const WebinarCard = ({ title, date, description, link }) => {
     )
 }
 
+const GemWrapper = styled.div`
+margin: 0px 8px;
+`
+
+const GemCardHeader = styled.h2`
+font-size: 0.8rem;
+font-weight: bold;
+margin: 0;
+`
+
+const GemDate = styled.p`
+margin: 0;
+font-size: 0.8rem;
+`
 const DataGemCard = ({ image, title, date, link }) => {
-    const Wrapper = styled.div`
-        margin: 0px 8px;
-    `
-
-    const CardHeader = styled.h2`
-        font-size: 0.8rem;
-        font-weight: bold;
-        margin: 0;
-    `
-
-    const Date = styled.p`
-        margin: 0;
-        font-size: 0.8rem;
-    `
-
     return (
-        <Wrapper>
+        <GemWrapper>
             <Link to={link}>
                 <Image src={image} alt={title} />
             </Link>
-            <CardHeader>{title}</CardHeader>
-            <Date>{date}</Date>
-        </Wrapper>
+            <GemCardHeader>{title}</GemCardHeader>
+            <GemDate>{date}</GemDate>
+        </GemWrapper>
     )
 }
 
