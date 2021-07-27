@@ -55,7 +55,7 @@ export const Header = ({ authState, user }) => {
                     <Link to="#">About</Link>
                 </Menu.Item>
                 <Menu.Item key="6">
-                    {authState === SignedIn && <Link to="#">User Dashboard</Link>}
+                    {authState === SignedIn && <Link to="user">User Dashboard</Link>}
                 </Menu.Item>
                 <Menu.Item key="7" style={{ marginLeft: "auto" }}>
                     {(authState === SignedIn && <SignOutButton />) || <SignInButton />}

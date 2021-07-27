@@ -1,6 +1,6 @@
 //import { getIn } from "@thi.ng/paths"
 import { EquivMap } from "@thi.ng/associative"
-
+import { useContext } from "react"
 import { URL2obj } from "@-0/utils"
 import * as K from "@-0/keys"
 import { registerCMD } from "@-0/spool"
@@ -12,7 +12,9 @@ import { node, API, utils } from "cope-client-utils"
 import { queries } from "../graphql"
 import { log } from "../utils"
 import { Page1, Page2, Page3, SignIn, Gems, Landing } from "../pages"
+import { UserDashboard } from "../pages"
 import { CRUD } from "cope-client-utils/lib/utils"
+import { CTX } from "../context"
 import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
 
 const dummy_query = {
@@ -139,6 +141,22 @@ export const routerCfg = async url => {
                             }
                         },
                         URL_PAGE: () => Landing,
+                    },
+                ],
+                [
+                    { ...match, URL_PATH: ["user"] },
+                    {
+                        URL_DATA: async () => {
+                            const list = await utils.CRUD(dummy_query)
+                            return {
+                                DOM_HEAD: {
+                                    title: "Mock User Profile",
+                                    og_description: "Mock of user profile page",
+                                },
+                                DOM_BODY: { data: list },
+                            }
+                        },
+                        URL_PAGE: () => UserDashboard,
                     },
                 ],
             ]
