@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { AmplifySignOut } from "@aws-amplify/ui-react"
+import { Auth } from "@aws-amplify/auth"
 import { DOMnavigated$ } from "@-0/browser"
 import { Link } from "./Link"
 import { primary_color } from "../theme/colors.js"
@@ -8,43 +9,25 @@ import { Breadcrumbs, Header } from "../components"
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components"
 import { CensusAcademyFooter } from "./CensusAcademyFooter"
 
-import { Layout, Menu, Breadcrumb } from "antd"
+import { Layout } from "antd"
 
 const { Content, Footer } = Layout
-const {
-    ConfirmSignIn,
-    ConfirmSignUp,
-    CustomConfirmSignIn,
-    ForgotPassword,
-    Loading,
-    ResetPassword,
-    SettingMFA,
-    SignIn,
-    SignOut,
-    SignUp,
-    SignedIn,
-    SignedOut,
-    SigningUp,
-    TOTPSetup,
-    VerifyContact,
-    VerifyingAttributes,
-    confirmingSignInCustomFlow,
-    confirmingSignUpCustomFlow,
-} = AuthState
 
-export const Chrome = ({ children }) => {
-    const [authState, setAuthState] = useState()
-    const [user, setUser] = useState()
+export const Chrome = ({ authUser, children }) => {
+    const [ authState, setAuthState ] = useState()
+    const [ user, setUser ] = useState()
+    //console.log({ authUser, authState, user })
 
-    console.log({ authState, user })
+    //console.log({ authState, user })
     useEffect(
         () => {
             // PRIORITY: API
             console.log("App useEffect Triggered ⚠")
-            DOMnavigated$.next({
-                target: document,
-                currentTarget: document,
-            })
+            //DOMnavigated$.next({
+            //    target: document,
+            //    currentTarget: document,
+            //})
+            setUser(authUser)
             return onAuthUIStateChange((nextAuthState, authData) => {
                 //@ts-ignore
                 setAuthState(nextAuthState)
@@ -54,7 +37,7 @@ export const Chrome = ({ children }) => {
         },
         // authState is a string, so equality checks don't
         // fire arbitrary rerenderings
-        [authState]
+        [ authState, user, authUser ],
     )
 
     return (

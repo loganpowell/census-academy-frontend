@@ -10,7 +10,7 @@ export const Link = ({ to, style = {}, children }) => {
         <a
             href={path}
             onClick={e => {
-                console.log({ e })
+                //console.log({ e })
                 e.preventDefault()
                 run$.next({ ...NAV, args: e })
             }}

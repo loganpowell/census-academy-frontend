@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
+import React, { useState, useEffect, useContext } from "react"
 import { DOMnavigated$ } from "@-0/browser"
-import { Link } from "./Link"
-import { primary_color } from "../theme/colors.js"
-import { SignInButton, SignOutButton } from "../components"
 import { AuthState } from "@aws-amplify/ui-components"
+import { primary_color } from "../theme/colors.js"
+import { CTX } from "../context"
+import { Link } from "./Link"
+import { SignInButton, SignOutButton } from "../components"
 import { Layout, Menu } from "antd"
 
 const { Header: HEADER } = Layout
@@ -30,9 +30,11 @@ const {
 } = AuthState
 
 export const Header = ({ authState, user }) => {
+    //console.log({ authState, user, SignedIn })
+
     return (
         <HEADER style={{ position: "fixed", zIndex: 1, width: "100%", padding: "0 1rem" }}>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[ "2" ]}>
                 <Menu.Item key="1">
                     <a href="/">
                         <img
@@ -57,8 +59,16 @@ export const Header = ({ authState, user }) => {
                 <Menu.Item key="6">
                     {authState === SignedIn && <Link to="user">User Dashboard</Link>}
                 </Menu.Item>
-                <Menu.Item key="7" style={{ marginLeft: "auto" }}>
-                    {(authState === SignedIn && <SignOutButton />) || <SignInButton />}
+                <Menu.Item key="3" style={{ marginLeft: "auto" }}>
+                    {authState === SignedIn ? (
+                        <SignOutButton />
+                    ) : authState === SignedOut ? (
+                        <SignInButton />
+                    ) : user ? (
+                        <SignOutButton />
+                    ) : (
+                        <SignInButton />
+                    )}
                 </Menu.Item>
             </Menu>
         </HEADER>

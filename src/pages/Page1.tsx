@@ -4,8 +4,8 @@ import { FormInput, Breadcrumbs } from "../components"
 export const Page1 = ({ data = {} }) => {
     const { parse } = useContext(CTX)
     const { URL_PATH } = parse()
-    console.log({ URL_PATH })
-    console.log("Page1 data:", data)
+    //console.log({ URL_PATH })
+    //console.log("Page1 data:", data)
     return (
         <div>
             <Breadcrumbs path={URL_PATH} />
