@@ -53,7 +53,7 @@ export const Header = ({ authState, user }) => {
                     <Link to="#">Courses</Link>
                 </Menu.Item> */}
                 <Menu.Item key="3">
-                    <Link to="#">About</Link>
+                    <Link to="about">About</Link>
                 </Menu.Item>
                 <Menu.Item key="4">
                     {(authState === SignedIn || user) && <Link to="user">User Dashboard</Link>}
