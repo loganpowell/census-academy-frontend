@@ -19,3 +19,23 @@ export const getNodesByType = /* GraphQL */ `
         }
     }        
 `
+
+export const getNodeByID = /* GraphQL */ `
+  query getNodeByID($id:ID!){
+    getNode(id:$id){
+      status
+      type
+      createdAt
+      updatedAt
+      owner
+      assets{
+        items{
+          type
+          name
+          content
+          index
+        }
+      }
+    }
+  }
+`

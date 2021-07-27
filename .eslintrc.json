@@ -13,6 +13,7 @@
         "no-negated-in-lhs": 0,
         "no-unreachable": 1,
         "no-console": 1,
+        "prefer-const": 0,
         "no-use-before-define": 0,
         "no-restricted-globals": 1,
         "@typescript-eslint/explicit-function-return-type": 0,

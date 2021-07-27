@@ -88,7 +88,7 @@ export const collapse = (coll, sep = "/", crumbs = [], acc = {}) => {
  */
 export const prune = (coll, sep = "/", acc = {}) => {
     Object.entries(coll).forEach(([ k, v ]) => {
-        const key = k.split(sep).slice(-1)
+        const key = k.split(sep).slice(-1).join("")
         acc[key] = v
     })
     return acc
@@ -106,7 +106,7 @@ export const diff = [
         const days_gap = Math.abs((time_cur - time_acc) / (1000 * 3600 * 24))
 
         return {
-            days_gap   : isNaN(days_gap) ? null : days_gap > 30 ? 30 : ~~days_gap,
+            days_gap: isNaN(days_gap) ? null : days_gap > 30 ? 30 : ~~days_gap,
             created_at,
             ...rest,
         }
@@ -178,32 +178,13 @@ export const aggregate_by_key = (reports = []) => {
 }
 
 /**
- * @example
- * let test = [{a:1, b:2, c:3}, {a:2, b:5, c:9}, {a:1, b:4, c:6}]
- *
- * coll_by_path_aggregate(["a"], test) //?
- *
- * {
- *  1: {
- *      aggregate:{a:[1,1], b:[2,4], c:[3,6]},
- *      reports:[{a:1, b:2, c:3}, {a:1, b:4, c:6}]
- *  },
- *  2: {
- *      aggregate:{a:[2], b:[5], c:[9]},
- *      reports:[{a:2, b:5, c:9}]
- *  }
- * }
- */
-export const coll_by_path_aggregate = (path = [], entries = []) => {
-    let coll = collect_by_path(path, entries)
-    return Object.entries(coll).reduce((a, c) => {
-        let [ sender, reports ] = c
-        a[sender] = { aggregate: aggregate_by_key(reports), reports }
-        return a
-    }, {})
-}
-
-/**
+ * HOF that takes an config object with keys that match
+ * target keys of a target object and values that represent
+ * reducer functions to be applied to the target object
+ * values (arrays) and returns an object with those
+ * operations applied. Any target object keys not found in
+ * the config object are omitted from the resulting object
+ *  
  * @example
  * let ex = { a: [ 1, 2, 1 ], b: [ 2, 5, 4 ], c: [ 3, 9, 6 ] }
  * apply_kv_ops({a: [(a, c, i, d) => a + c, 0], b: [(a, c, i, d) => (a.push(c), a), []]})(ex) //?
@@ -213,9 +194,77 @@ export const apply_kv_ops = (key_reduction_map = {}) => (aggregate = {}) => {
     return Object.entries(aggregate).reduce((a, c) => {
         let [ _key, arr ] = c
         if (key_reduction_map[_key]) {
+            // @ts-ignore
             a[_key] = arr.reduce(...key_reduction_map[_key])
         }
         return a
+    }, {})
+}
+
+/**
+ * HOF that takes a config object with keys that correspond
+ * to a static value to be compared/matched against a target
+ * arrays items and applies the configs corresponding
+ * value (function) to the target item. Returns an object...
+ * 
+ * @example
+ * let ex = [
+ *  { type: "body", name: "Get in my belly" }, 
+ *  { type: "title", name: "Austin Powers" }, 
+ *  { type: "video", name: "some Youtube video"}
+ * ]
+ * 
+ * apply_ops_by_value({
+ *  body:  [(a, c) => ({ ...a, body: c })],
+ *  title: [(a, c) => { 
+ *      let upper = c.toUpperCase()
+ *      return { ...a, title: upper }
+ *    }]
+ * })
+ */
+export const apply_ops_by_value = (value_conditions = {}) => (items = []) => {
+    // TODO
+}
+
+/**
+ * Takes an array of COPE Assets(Pr) and returns an object
+ * with the types as keys and the name & content as values
+ * of that key. If indexes are needed, true can be passed as
+ * the second arg
+ *
+ * @example
+ * const test_assets = [
+    {
+        type    : "T_BODY",
+        name    : "Body",
+        index   : 1,
+        content :
+            "Some sample _markdown_ content!",
+    },
+    {
+        type    : "T_OG_TITLE",
+        name    : "Title",
+        index   : 2,
+        content : "Example Title",
+    },
+    {
+        type    : "A_VIDEO",
+        name    : "Video",
+        index   : 0,
+        content : "https://youtu.be/RSdqooZIRwI",
+    },
+]
+ *
+ * const assets
+ */
+export const convert_assets_to_object = (
+    assets = [ { type: "", name: "", content: "", index: 0 } ],
+    use_index = false,
+): any => {
+    return assets.reduce((a, c) => {
+        const { type, name, content, index } = c
+        const key = (index && use_index && type + index) || type
+        return { ...a, [key]: { name, content } }
     }, {})
 }
 
@@ -244,12 +293,15 @@ export const apply_kv_ops = (key_reduction_map = {}) => (aggregate = {}) => {
  *  click_rate: 6.5,
  *  unsubscribe_rate: 4
  * }
+ * 
  */
 export const averaged = agr_coll =>
     Object.entries(agr_coll).reduce((a, c, i, { length }) => {
         const [ , stats ] = c
+        // @ts-ignore
         const { summary } = stats
         Object.entries(summary).forEach(([ k, v ]) => {
+            // @ts-ignore
             a[k] = a[k] ? ~~((a[k] + v / length) * 100) / 100 : ~~(v / length * 100) / 100
         })
         return a

@@ -18,15 +18,9 @@ export const Chrome = ({ authUser, children }) => {
     const [ user, setUser ] = useState()
     //console.log({ authUser, authState, user })
 
-    //console.log({ authState, user })
     useEffect(
         () => {
-            // PRIORITY: API
-            console.log("App useEffect Triggered ⚠")
-            //DOMnavigated$.next({
-            //    target: document,
-            //    currentTarget: document,
-            //})
+            //console.log("App useEffect Triggered ⚠")
             setUser(authUser)
             return onAuthUIStateChange((nextAuthState, authData) => {
                 //@ts-ignore
@@ -35,8 +29,6 @@ export const Chrome = ({ authUser, children }) => {
                 setUser(authData)
             })
         },
-        // authState is a string, so equality checks don't
-        // fire arbitrary rerenderings
         [ authState, user, authUser ],
     )
 

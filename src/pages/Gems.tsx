@@ -2,16 +2,19 @@ import React from "react"
 import { unified } from 'unified'
 import parse from 'remark-parse'
 import remark2react from 'remark-react'
-
+//import styled from "styled-components"
+//import {} from "styled-system"
+import { Link } from "../components"
 import { Card } from "antd"
 const { Meta } = Card
 
 export const Gems = ({ data }) => {
     //console.log("Gems data:",  data )
     const items = data
-    return <div style={{ display: "flex", width: "100%"}}>
+    return <div style={{ display:"flex", flexWrap:"wrap", width: "100%" }}>
         {items.map((item, idx) => {
-          
+        //  console.log("Gem Item:", item)
+          const { id } = item
           const assets = item?.assets?.items
           if(!assets.length) return null
         //  console.log({assets})
@@ -37,14 +40,17 @@ export const Gems = ({ data }) => {
               }
           }, { cover: null, title: null , body: null })
 
-          return <Card
-              key={idx}
-              hoverable
-              style={{ width: "33%", margin: '1rem', alignSelf: "flex-start"}}
-              cover={<img alt={title} src={cover} />}
-            >
-              <Meta title={title} description={body} />
-            </Card>
+          return (
+            <Link to={"gems/"+id} key={idx} style={{ width: "40%", margin: '1rem', alignSelf: "flex-start"}}>
+                <Card
+                  hoverable
+                  style={{ width: "100%",}}
+                  cover={<img alt={title} src={cover} />}
+                >
+                    <Meta title={title} description={body} />
+                </Card>
+            </Link>
+          )
         })}
     </div>
 }
