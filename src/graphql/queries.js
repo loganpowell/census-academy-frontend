@@ -7,6 +7,7 @@ export const getNodesByType = /* GraphQL */ `
             items{
                 id
                 type
+                createdAt
                 assets{
                     items{
                         type

@@ -55,6 +55,7 @@ export const Gems = ({ data }) => {
             {items.map((item, index) => {
                 const { id } = item
                 const assets = item?.assets?.items
+                const date = Date.parse(item?.createdAt)
                 const { cover, title, body } = assets.reduce(
                     (a, c) => {
                         const { type, name, content } = c
@@ -88,7 +89,11 @@ export const Gems = ({ data }) => {
                         <DataGemCard
                             image={cover}
                             title={title}
-                            date={"June 1, 2021"}
+                            date={new Intl.DateTimeFormat("en-US", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            }).format(date)}
                             link={`/gems/${id}`}
                         />
                     </Col>
