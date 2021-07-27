@@ -13,6 +13,7 @@ import { queries } from "../graphql"
 import { log, convert_assets_to_object } from "../utils"
 import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem } from "../pages"
 import { UserDashboard } from "../pages"
+import { About } from "../pages"
 import { CTX } from "../context"
 import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
 
@@ -190,6 +191,23 @@ export const routerCfg = async url => {
                             }
                         },
                         URL_PAGE: () => UserDashboard,
+                    },
+                ],
+                [
+                    { ...match, URL_PATH: ["about"] },
+                    {
+                        URL_DATA: async () => {
+                            const list = await utils.CRUD(dummy_query)
+                            return {
+                                DOM_HEAD: {
+                                    title: "About Census Academy",
+                                    og_description:
+                                        "Free courses to teach you how to use Census data. Learn how to use the US Census Bureau's free data for work, school, or other projects.",
+                                },
+                                DOM_BODY: { data: list },
+                            }
+                        },
+                        URL_PAGE: () => About,
                     },
                 ],
             ]

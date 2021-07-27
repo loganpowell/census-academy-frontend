@@ -30,11 +30,9 @@ const {
 } = AuthState
 
 export const Header = ({ authState, user }) => {
-    console.log({ authState, user, SignedIn })
-
     return (
         <HEADER style={{ position: "fixed", zIndex: 1, width: "100%", padding: "0 1rem" }}>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[ "2" ]}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
                 <Menu.Item key="1">
                     <a href="/">
                         <img
@@ -47,19 +45,20 @@ export const Header = ({ authState, user }) => {
                 <Menu.Item key="2" style={{}}>
                     <Link href="gems">Data Gems</Link>
                 </Menu.Item>
-                <Menu.Item key="3">
-                    <Link href="#">Webinars</Link>
+                {/* TODO front end pages and routes for webinars and courses */}
+                {/* <Menu.Item key="3">
+                    <Link to="#">Webinars</Link>
                 </Menu.Item>
                 <Menu.Item key="4">
-                    <Link href="#">Courses</Link>
+                    <Link to="#">Courses</Link>
+                </Menu.Item> */}
+                <Menu.Item key="3">
+                    <Link to="about">About</Link>
                 </Menu.Item>
-                <Menu.Item key="5">
-                    <Link href="#">About</Link>
+                <Menu.Item key="4">
+                    {(authState === SignedIn || user) && <Link to="user">User Dashboard</Link>}
                 </Menu.Item>
-                <Menu.Item key="6">
-                    {(authState === SignedIn || user) && <Link href="user">User Dashboard</Link>}
-                </Menu.Item>
-                <Menu.Item key="7" style={{ marginLeft: "auto" }}>
+                <Menu.Item key="5" style={{ marginLeft: "auto" }}>
                     {authState === SignedIn ? (
                         <SignOutButton />
                     ) : authState === SignedOut ? (
