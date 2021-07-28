@@ -98,7 +98,7 @@ export const routerCfg = async url => {
                                         DOM_HEAD: {
                                             title: T_OG_TITLE.content,
                                         },
-                                        DOM_BODY: items,
+                                        DOM_BODY: { ...items, date: createdAt },
                                     }
                                 }
                             }
