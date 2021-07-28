@@ -55,9 +55,11 @@ export const Header = ({ authState, user }) => {
                 <Menu.Item key="3">
                     <Link href="about">About</Link>
                 </Menu.Item>
-                <Menu.Item key="4">
-                    {(authState === SignedIn || user) && <Link href="user">User Dashboard</Link>}
-                </Menu.Item>
+                {(authState === SignedIn || user) && (
+                    <Menu.Item key="4">
+                        <Link href="user">User Dashboard</Link>
+                    </Menu.Item>
+                )}
                 <Menu.Item key="5" style={{ marginLeft: "auto" }}>
                     {authState === SignedIn ? (
                         <SignOutButton />
