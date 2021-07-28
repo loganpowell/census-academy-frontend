@@ -152,7 +152,7 @@ export const Gems = ({ data }) => {
                                 image={cover}
                                 title={title}
                                 date={formattedDate}
-                                link={`/gems/${id}`}
+                                link={`gems/${id}`}
                             />
                         </Col>
                     )
