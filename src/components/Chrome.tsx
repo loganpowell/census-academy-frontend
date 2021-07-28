@@ -14,30 +14,27 @@ import { Layout } from "antd"
 const { Content, Footer } = Layout
 
 export const Chrome = ({ authUser, children }) => {
-    const [ authState, setAuthState ] = useState()
-    const [ user, setUser ] = useState()
+    const [authState, setAuthState] = useState()
+    const [user, setUser] = useState()
     //console.log({ authUser, authState, user })
 
-    useEffect(
-        () => {
-            //console.log("App useEffect Triggered ⚠")
-            setUser(authUser)
-            return onAuthUIStateChange((nextAuthState, authData) => {
-                //@ts-ignore
-                setAuthState(nextAuthState)
-                //@ts-ignore
-                setUser(authData)
-            })
-        },
-        [ authState, user, authUser ],
-    )
+    useEffect(() => {
+        //console.log("App useEffect Triggered ⚠")
+        setUser(authUser)
+        return onAuthUIStateChange((nextAuthState, authData) => {
+            //@ts-ignore
+            setAuthState(nextAuthState)
+            //@ts-ignore
+            setUser(authData)
+        })
+    }, [authState, user, authUser])
 
     return (
         <Layout>
             <Header authState={authState} user={user} />
             <Content
                 className="site-layout"
-                style={{ padding: "0 50px", marginTop: 64, width: "100%" }}
+                style={{ padding: "0 128px", marginTop: 64, width: "100%" }}
             >
                 <div className="site-layout-background" style={{ minHeight: 380 }}>
                     <CTX.Provider
