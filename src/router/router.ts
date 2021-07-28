@@ -126,7 +126,7 @@ export const routerCfg = async url => {
                                 [K.DOM_BODY]: { data: list },
                             }
                         },
-                        [K.URL_PAGE]: () => Page1,
+                        [K.URL_PAGE]: () => Landing,
                     },
                 ],
                 [
@@ -159,22 +159,6 @@ export const routerCfg = async url => {
                             }
                         },
                         URL_PAGE: () => Page2,
-                    },
-                ],
-                [
-                    { ...match, URL_PATH: ["landing"] },
-                    {
-                        URL_DATA: async () => {
-                            const list = await utils.CRUD(dummy_query)
-                            return {
-                                DOM_HEAD: {
-                                    title: "Test Landing",
-                                    og_description: "Test landing page",
-                                },
-                                DOM_BODY: { data: list },
-                            }
-                        },
-                        URL_PAGE: () => Landing,
                     },
                 ],
                 [

@@ -72,7 +72,11 @@ export const Landing = ({ children }) => (
             </StyledHero>
         </Row>
         {/* Header */}
-        <Row style={{ background: "#fff" }}>
+        {/* Until we can get SVGs that match the SVGs
+        on the Census Acadeny landing page or in the mockup
+        (https://projects.invisionapp.com/share/8FXZWNB7TX9#/screens/424501319)
+        just leave */}
+        {/* <Row style={{ background: "#fff" }}>
             <Col span={24}>
                 <Wrapper>
                     <SectionHeader>Browse our data topics</SectionHeader>
@@ -116,7 +120,7 @@ export const Landing = ({ children }) => (
                     <DataTopicsHeader>Housing</DataTopicsHeader>
                 </Wrapper>
             </Col>
-        </Row>
+        </Row> */}
         {/* Header */}
         <Row>
             <Col span={24}>
@@ -126,7 +130,7 @@ export const Landing = ({ children }) => (
             </Col>
         </Row>
         <Row>
-            <Col span={12}>
+            <Col lg={12} md={24} sm={24}>
                 <Wrapper>
                     <SectionText>
                         Take courses to use Census data for your business, personal use, or analysis
@@ -135,12 +139,15 @@ export const Landing = ({ children }) => (
                     <StyledButton>Take Courses</StyledButton>
                 </Wrapper>
             </Col>
-            <Col span={12}>images</Col>
+            <Col lg={12} md={24} sm={24}>
+                {/* STOCK PHOTO UNTIL WE GET REAL GRPAHICS */}
+                <img src="https://picsum.photos/400/200/?blur" style={{ margin: "0px 128px" }} />
+            </Col>
         </Row>
         {/* Header */}
         <Row style={{ background: tertiary_color }}>
-            <Col span={12}></Col>
-            <Col span={12}>
+            <Col lg={12} md={24} sm={24}></Col>
+            <Col lg={12} md={24} sm={24}>
                 <Wrapper>
                     <SectionHeader style={{ color: "white" }}>
                         For small businesses and data enthusiasts
@@ -149,8 +156,11 @@ export const Landing = ({ children }) => (
             </Col>
         </Row>
         <Row style={{ background: tertiary_color }}>
-            <Col span={12}>images</Col>
-            <Col span={12}>
+            <Col lg={12} md={24} sm={24}>
+                {/* STOCK PHOTO UNTIL WE GET REAL GRPAHICS */}
+                <img src="https://picsum.photos/400/200/?blur" style={{ margin: "0px 128px" }} />
+            </Col>
+            <Col lg={12} md={24} sm={24}>
                 <Wrapper>
                     <SectionText style={{ color: "white" }}>
                         Browse our Data Gem videos and apply those skills to analyze data and
@@ -172,7 +182,7 @@ export const Landing = ({ children }) => (
             </Col>
         </Row>
         <Row style={{ background: "#048392" }}>
-            <Col span={12}>
+            <Col lg={12} md={24} sm={24}>
                 <Wrapper>
                     <SectionText style={{ color: "white" }}>
                         Watch webinars live or pre-recorded about Census data and current trends on
@@ -181,7 +191,10 @@ export const Landing = ({ children }) => (
                     <StyledButton>Watch Webinars</StyledButton>
                 </Wrapper>
             </Col>
-            <Col span={12}>images</Col>
+            <Col lg={12} md={24} sm={24}>
+                {/* STOCK PHOTO UNTIL WE GET REAL GRPAHICS */}
+                <img src="https://picsum.photos/400/200/?blur" style={{ margin: "0px 128px" }} />
+            </Col>
         </Row>
     </>
 )
