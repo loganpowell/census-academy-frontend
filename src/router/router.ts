@@ -13,7 +13,7 @@ import { queries } from "../graphql"
 import { log, convert_assets_to_object } from "../utils"
 import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem } from "../pages"
 import { UserDashboard } from "../pages"
-import { Courses } from "../pages"
+import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
 import { CTX } from "../context"
 import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
@@ -157,7 +157,7 @@ export const routerCfg = async url => {
                         },
                         URL_PAGE: () => {
                             if (courses_path.length === 1) return Courses
-                            if (courses_path.length === 2) return Gem
+                            if (courses_path.length === 2) return CourseOverview
                         },
                     },
                 ],
