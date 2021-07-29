@@ -16,27 +16,36 @@ const Image = styled.img`
 
 const CourseWrapper = styled.div`
     margin: 0px 8px;
+    padding: 16px;
+    border: 1px solid ${primary_color};
+    border-radius: 4px;
 `
 
 const CourseCardHeader = styled.h2`
-    font-size: 0.8rem;
+    font-size: 1.25rem;
     font-weight: bold;
     margin: 0;
+    display: inline-block;
 `
 
-const CourseDate = styled.p`
-    margin: 0;
-    font-size: 0.8rem;
-`
+const LinkStyles = {
+    color: "white",
+    fontSize: "1.125rem",
+    fontWeight: 500,
+    backgroundColor: "#048392",
+    padding: "4px 8px",
+    borderRadius: "5px",
+    float: "right",
+}
 
 const CourseCard = ({ image, title, date, link }) => {
     return (
         <CourseWrapper>
-            <Link href={link}>
-                <Image src={image} alt={title} />
-            </Link>
+            {image && <Image src={image} alt={title} />}
             <CourseCardHeader>{title}</CourseCardHeader>
-            <CourseDate>{date}</CourseDate>
+            <Link href={link} style={LinkStyles}>
+                Start Course
+            </Link>
         </CourseWrapper>
     )
 }
@@ -144,8 +153,9 @@ export const Courses = ({ data }) => {
                         { cover: null, title: null, body: null }
                     )
 
+                    console.log("cover", cover)
                     return (
-                        <Col lg={6} md={12} sm={24} key={index}>
+                        <Col sm={24} key={index}>
                             <CourseCard
                                 image={cover}
                                 title={title}
