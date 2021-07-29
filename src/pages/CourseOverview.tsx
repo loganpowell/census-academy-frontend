@@ -24,7 +24,7 @@ const DateText = styled.p`
 `
 
 export const CourseOverview = ({ data }) => {
-    // console.log("Gems data:", data)
+    console.log("Course data:", data)
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
 

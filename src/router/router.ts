@@ -120,7 +120,10 @@ export const routerCfg = async url => {
                                 // TODO replace this with course query
                                 const res = await publicQuery({
                                     query: queries.getNodesByType,
-                                    variables: { type: NodeType.A_GEM, status: NodeStatus.DRAFT },
+                                    variables: {
+                                        type: NodeType.C_COURSES,
+                                        status: NodeStatus.DRAFT,
+                                    },
                                 })
                                 return {
                                     DOM_HEAD: {
@@ -144,6 +147,7 @@ export const routerCfg = async url => {
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
                                 if (assets.items) {
+                                    console.log("getNode", getNode)
                                     const items = convert_assets_to_object(assets.items)
                                     const { T_OG_TITLE, A_VIDEO, T_BODY } = items
                                     return {
@@ -171,8 +175,9 @@ export const routerCfg = async url => {
                             //  console.log({ list })
                             return {
                                 [K.DOM_HEAD]: {
-                                    [K.HD_TITL]: "COPE frontend",
-                                    [K.OG_DESC]: "COPE frontend tinkering",
+                                    [K.HD_TITL]: "Census Academy",
+                                    [K.OG_DESC]:
+                                        "Free courses to teach you how to use Census data. Learn how to use the US Census Bureau's free data for work, school, or other projects.",
                                     //img_url,
                                 },
                                 [K.DOM_BODY]: { data: list },
