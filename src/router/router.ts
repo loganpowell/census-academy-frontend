@@ -13,6 +13,7 @@ import { queries } from "../graphql"
 import { log, convert_assets_to_object } from "../utils"
 import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem } from "../pages"
 import { UserDashboard } from "../pages"
+import { Courses } from "../pages"
 import { About } from "../pages"
 import { CTX } from "../context"
 import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
@@ -57,6 +58,7 @@ export const routerCfg = async url => {
     }
 
     const gems_path = ["gems", ...URL_PATH.slice(1)]
+    const courses_path = ["courses", ...URL_PATH.slice(1)]
     const RES =
         //!session ? sign_in :
         new EquivMap(
@@ -106,6 +108,56 @@ export const routerCfg = async url => {
                         URL_PAGE: () => {
                             if (gems_path.length === 1) return Gems
                             if (gems_path.length === 2) return Gem
+                        },
+                    },
+                ],
+                [
+                    { ...match, URL_PATH: courses_path },
+                    {
+                        URL_DATA: async () => {
+                            // courses landing
+                            if (courses_path.length === 1) {
+                                // TODO replace this with course query
+                                const res = await publicQuery({
+                                    query: queries.getNodesByType,
+                                    variables: { type: NodeType.A_GEM, status: NodeStatus.DRAFT },
+                                })
+                                return {
+                                    DOM_HEAD: {
+                                        title: "Courses",
+                                        og_description:
+                                            "Free courses to teach you how to use Census data. Learn how to use the US Census Bureau's free data for work, school, or other projects.",
+                                    },
+                                    DOM_BODY: res?.data?.nodesByStatusType?.items,
+                                }
+                            }
+                            // courses focus page
+                            if (courses_path.length === 2) {
+                                const id = courses_path[1]
+                                const res = await publicQuery({
+                                    query: queries.getNodeByID,
+                                    variables: { id },
+                                })
+                                const {
+                                    data: { getNode },
+                                } = res
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+                                if (assets.items) {
+                                    const items = convert_assets_to_object(assets.items)
+                                    const { T_OG_TITLE, A_VIDEO, T_BODY } = items
+                                    return {
+                                        DOM_HEAD: {
+                                            title: T_OG_TITLE.content,
+                                        },
+                                        DOM_BODY: { ...items, date: createdAt },
+                                    }
+                                }
+                            }
+                        },
+                        URL_PAGE: () => {
+                            if (courses_path.length === 1) return Courses
+                            if (courses_path.length === 2) return Gem
                         },
                     },
                 ],
