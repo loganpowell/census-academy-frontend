@@ -11,7 +11,7 @@ import { node, API, utils } from "cope-client-utils"
 //import { Chrome } from "../layout"
 import { queries } from "../graphql"
 import { log, convert_assets_to_object } from "../utils"
-import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem } from "../pages"
+import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem, Error404 } from "../pages"
 import { UserDashboard } from "../pages"
 import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
@@ -250,7 +250,7 @@ export const routerCfg = async url => {
             // TODO: create actual 404 Page
         ).get(match) || {
             [K.URL_DATA]: () => ({ DOM_HEAD: { title: "404" }, DOM_BODY: { data: 404 } }),
-            [K.URL_PAGE]: () => Page1,
+            [K.URL_PAGE]: () => Error404,
         }
 
     const data = await RES[K.URL_DATA]()
