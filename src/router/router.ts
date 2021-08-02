@@ -16,7 +16,7 @@ import { UserDashboard } from "../pages"
 import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
 import { CTX } from "../context"
-import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
+import { EdgeType, NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
 
 const { CRUD } = utils
 const dummy_query = {
@@ -165,18 +165,22 @@ export const routerCfg = async url => {
                             // courses content page
                             if (courses_path.length > 2) {
                                 const id = courses_path[1]
-                                const res = await publicQuery({
+                                const nodeInfo = await publicQuery({
                                     query: queries.getNodeByID,
                                     variables: { id },
                                 })
                                 const {
                                     data: { getNode },
-                                } = res
+                                } = nodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
+                                const connectedNodes = await node.connections({
+                                    id: id,
+                                    edgeType: EdgeType.HAS_PART,
+                                })
                                 if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
-                                    const { T_OG_TITLE, A_VIDEO, T_BODY } = items
+                                    const { T_OG_TITLE } = items
                                     return {
                                         DOM_HEAD: {
                                             title: T_OG_TITLE.content,
@@ -186,6 +190,7 @@ export const routerCfg = async url => {
                                             date: createdAt,
                                             courseId: id,
                                             path: courses_path,
+                                            connectedNodes: connectedNodes,
                                         },
                                     }
                                 }
