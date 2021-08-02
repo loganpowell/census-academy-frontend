@@ -46,21 +46,22 @@ export const Header = ({ authState, user }) => {
                     <Link href="gems">Data Gems</Link>
                 </Menu.Item>
                 {/* TODO front end pages and routes for webinars and courses */}
-                {/* <Menu.Item key="3">
-                    <Link href="#">Webinars</Link>
-                </Menu.Item>
-                <Menu.Item key="4">
-                    <Link href="#">Courses</Link>
-                </Menu.Item> */}
                 <Menu.Item key="3">
+                    <Link href="courses">Courses</Link>
+                </Menu.Item>
+                {/* 
+                <Menu.Item key="4">
+                    <Link href="#">Webinars</Link>
+                </Menu.Item> */}
+                <Menu.Item key="4">
                     <Link href="about">About</Link>
                 </Menu.Item>
                 {(authState === SignedIn || user) && (
-                    <Menu.Item key="4">
+                    <Menu.Item key="5">
                         <Link href="user">User Dashboard</Link>
                     </Menu.Item>
                 )}
-                <Menu.Item key="5" style={{ marginLeft: "auto" }}>
+                <Menu.Item key="6" style={{ marginLeft: "auto" }}>
                     {authState === SignedIn ? (
                         <SignOutButton />
                     ) : authState === SignedOut ? (

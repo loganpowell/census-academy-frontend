@@ -11,8 +11,9 @@ import { node, API, utils } from "cope-client-utils"
 //import { Chrome } from "../layout"
 import { queries } from "../graphql"
 import { log, convert_assets_to_object } from "../utils"
-import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem } from "../pages"
+import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem, Error404, Course } from "../pages"
 import { UserDashboard } from "../pages"
+import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
 import { CTX } from "../context"
 import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
@@ -57,6 +58,7 @@ export const routerCfg = async url => {
     }
 
     const gems_path = ["gems", ...URL_PATH.slice(1)]
+    const courses_path = ["courses", ...URL_PATH.slice(1)]
     const RES =
         //!session ? sign_in :
         new EquivMap(
@@ -110,6 +112,93 @@ export const routerCfg = async url => {
                     },
                 ],
                 [
+                    { ...match, URL_PATH: courses_path },
+                    {
+                        URL_DATA: async () => {
+                            // courses landing
+                            if (courses_path.length === 1) {
+                                // TODO replace this with course query
+                                const res = await publicQuery({
+                                    query: queries.getNodesByType,
+                                    variables: {
+                                        type: NodeType.C_COURSES,
+                                        status: NodeStatus.DRAFT,
+                                    },
+                                })
+                                return {
+                                    DOM_HEAD: {
+                                        title: "Courses",
+                                        og_description:
+                                            "Free courses to teach you how to use Census data. Learn how to use the US Census Bureau's free data for work, school, or other projects.",
+                                    },
+                                    DOM_BODY: res?.data?.nodesByStatusType?.items,
+                                }
+                            }
+                            // courses focus page
+                            if (courses_path.length === 2) {
+                                const id = courses_path[1]
+                                const res = await publicQuery({
+                                    query: queries.getNodeByID,
+                                    variables: { id },
+                                })
+                                const {
+                                    data: { getNode },
+                                } = res
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+                                if (assets.items) {
+                                    const items = convert_assets_to_object(assets.items)
+                                    const { T_OG_TITLE, A_VIDEO, T_BODY } = items
+                                    return {
+                                        DOM_HEAD: {
+                                            title: T_OG_TITLE.content,
+                                        },
+                                        DOM_BODY: {
+                                            ...items,
+                                            date: createdAt,
+                                            courseId: id,
+                                            path: courses_path,
+                                        },
+                                    }
+                                }
+                            }
+                            // courses content page
+                            if (courses_path.length > 2) {
+                                const id = courses_path[1]
+                                const res = await publicQuery({
+                                    query: queries.getNodeByID,
+                                    variables: { id },
+                                })
+                                const {
+                                    data: { getNode },
+                                } = res
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+                                if (assets.items) {
+                                    const items = convert_assets_to_object(assets.items)
+                                    const { T_OG_TITLE, A_VIDEO, T_BODY } = items
+                                    return {
+                                        DOM_HEAD: {
+                                            title: T_OG_TITLE.content,
+                                        },
+                                        DOM_BODY: {
+                                            ...items,
+                                            date: createdAt,
+                                            courseId: id,
+                                            path: courses_path,
+                                        },
+                                    }
+                                }
+                            }
+                        },
+                        URL_PAGE: () => {
+                            if (courses_path.length === 1) return Courses
+                            if (courses_path.length === 2) return CourseOverview
+                            if (courses_path.length === 3) return Course
+                        },
+                    },
+                ],
+                [
                     // home page (path = [])
                     { ...match, [K.URL_PATH]: [] },
                     {
@@ -119,8 +208,9 @@ export const routerCfg = async url => {
                             //  console.log({ list })
                             return {
                                 [K.DOM_HEAD]: {
-                                    [K.HD_TITL]: "COPE frontend",
-                                    [K.OG_DESC]: "COPE frontend tinkering",
+                                    [K.HD_TITL]: "Census Academy",
+                                    [K.OG_DESC]:
+                                        "Free courses to teach you how to use Census data. Learn how to use the US Census Bureau's free data for work, school, or other projects.",
                                     //img_url,
                                 },
                                 [K.DOM_BODY]: { data: list },
@@ -198,7 +288,7 @@ export const routerCfg = async url => {
             // TODO: create actual 404 Page
         ).get(match) || {
             [K.URL_DATA]: () => ({ DOM_HEAD: { title: "404" }, DOM_BODY: { data: 404 } }),
-            [K.URL_PAGE]: () => Page1,
+            [K.URL_PAGE]: () => Error404,
         }
 
     const data = await RES[K.URL_DATA]()
