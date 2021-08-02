@@ -144,10 +144,7 @@ export const Landing = ({ children }) => (
                     <StyledButton>Take Courses</StyledButton>
                 </Wrapper>
             </Col>
-            <Col lg={12} md={24} sm={24}>
-                {/* STOCK PHOTO UNTIL WE GET REAL GRPAHICS */}
-                <img src="https://picsum.photos/400/200/?blur" style={{ margin: "0px 128px" }} />
-            </Col>
+            <Col lg={12} md={24} sm={24}></Col>
         </Row>
         {/* Header */}
         <Row style={{ background: tertiary_color }}>
@@ -161,10 +158,7 @@ export const Landing = ({ children }) => (
             </Col>
         </Row>
         <Row style={{ background: tertiary_color }}>
-            <Col lg={12} md={24} sm={24}>
-                {/* STOCK PHOTO UNTIL WE GET REAL GRPAHICS */}
-                <img src="https://picsum.photos/400/200/?blur" style={{ margin: "0px 128px" }} />
-            </Col>
+            <Col lg={12} md={24} sm={24}></Col>
             <Col lg={12} md={24} sm={24}>
                 <Wrapper>
                     <SectionText style={{ color: "white" }}>
@@ -196,10 +190,7 @@ export const Landing = ({ children }) => (
                     <StyledButton>Watch Webinars</StyledButton>
                 </Wrapper>
             </Col>
-            <Col lg={12} md={24} sm={24}>
-                {/* STOCK PHOTO UNTIL WE GET REAL GRPAHICS */}
-                <img src="https://picsum.photos/400/200/?blur" style={{ margin: "0px 128px" }} />
-            </Col>
+            <Col lg={12} md={24} sm={24}></Col>
         </Row>
     </>
 )
