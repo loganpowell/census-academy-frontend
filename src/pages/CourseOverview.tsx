@@ -65,7 +65,6 @@ const LinkStyles = {
 }
 
 export const CourseOverview = ({ data }) => {
-    console.log("Course data:", data)
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
 
@@ -114,7 +113,7 @@ export const CourseOverview = ({ data }) => {
             </CourseInfo>
             <Wrapper>
                 <h2 style={{ fontWeight: 500 }}>Course Description</h2>
-                <p>{body}</p>
+                {body}
             </Wrapper>
         </div>
     )
