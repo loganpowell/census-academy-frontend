@@ -69,7 +69,7 @@ export const CourseOverview = ({ data }) => {
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
 
-    const { T_OG_DESCRIPTION, T_BODY, T_OG_TITLE, A_VIDEO, date } = data
+    const { T_OG_DESCRIPTION, T_BODY, T_OG_TITLE, date, courseId } = data
     const formattedDate = new Intl.DateTimeFormat("en-US", {
         year: "numeric",
         month: "long",
@@ -86,7 +86,7 @@ export const CourseOverview = ({ data }) => {
                     <HeroHeader>{title}</HeroHeader>
                     <HeroSubHeading>{T_OG_DESCRIPTION?.content}</HeroSubHeading>
                     <div style={{ marginLeft: "16px", marginTop: "24px" }}>
-                        <Link href="#" style={LinkStyles}>
+                        <Link href={`courses/${courseId}/home`} style={LinkStyles}>
                             Start Course
                         </Link>
                         {/* User accounts and saving content not fully built out;

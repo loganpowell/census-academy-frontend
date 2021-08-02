@@ -147,14 +147,13 @@ export const routerCfg = async url => {
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
                                 if (assets.items) {
-                                    console.log("getNode", getNode)
                                     const items = convert_assets_to_object(assets.items)
                                     const { T_OG_TITLE, A_VIDEO, T_BODY } = items
                                     return {
                                         DOM_HEAD: {
                                             title: T_OG_TITLE.content,
                                         },
-                                        DOM_BODY: { ...items, date: createdAt },
+                                        DOM_BODY: { ...items, date: createdAt, courseId: id },
                                     }
                                 }
                             }
