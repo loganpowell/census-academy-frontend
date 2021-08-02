@@ -89,9 +89,11 @@ export const CourseOverview = ({ data }) => {
                         <Link href="#" style={LinkStyles}>
                             Start Course
                         </Link>
-                        <Link href="#" style={LinkStyles}>
+                        {/* User accounts and saving content not fully built out;
+                            lets comment this button/link out until it's done */}
+                        {/* <Link href="#" style={LinkStyles}>
                             Save for Later
-                        </Link>
+                        </Link> */}
                     </div>
                 </StyledHero>
                 {/* in the mockup there's an SVG here */}
