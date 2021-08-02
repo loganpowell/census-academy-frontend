@@ -11,7 +11,7 @@ import { node, API, utils } from "cope-client-utils"
 //import { Chrome } from "../layout"
 import { queries } from "../graphql"
 import { log, convert_assets_to_object } from "../utils"
-import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem, Error404 } from "../pages"
+import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem, Error404, Course } from "../pages"
 import { UserDashboard } from "../pages"
 import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
@@ -153,7 +153,40 @@ export const routerCfg = async url => {
                                         DOM_HEAD: {
                                             title: T_OG_TITLE.content,
                                         },
-                                        DOM_BODY: { ...items, date: createdAt, courseId: id },
+                                        DOM_BODY: {
+                                            ...items,
+                                            date: createdAt,
+                                            courseId: id,
+                                            path: courses_path,
+                                        },
+                                    }
+                                }
+                            }
+                            // courses content page
+                            if (courses_path.length > 2) {
+                                const id = courses_path[1]
+                                const res = await publicQuery({
+                                    query: queries.getNodeByID,
+                                    variables: { id },
+                                })
+                                const {
+                                    data: { getNode },
+                                } = res
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+                                if (assets.items) {
+                                    const items = convert_assets_to_object(assets.items)
+                                    const { T_OG_TITLE, A_VIDEO, T_BODY } = items
+                                    return {
+                                        DOM_HEAD: {
+                                            title: T_OG_TITLE.content,
+                                        },
+                                        DOM_BODY: {
+                                            ...items,
+                                            date: createdAt,
+                                            courseId: id,
+                                            path: courses_path,
+                                        },
                                     }
                                 }
                             }
@@ -161,6 +194,7 @@ export const routerCfg = async url => {
                         URL_PAGE: () => {
                             if (courses_path.length === 1) return Courses
                             if (courses_path.length === 2) return CourseOverview
+                            if (courses_path.length === 3) return Course
                         },
                     },
                 ],
