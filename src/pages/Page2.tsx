@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { CTX } from "../context"
-import { FormInput, Breadcrumbs } from "../components"
+import { Breadcrumbs } from "../components"
 
 export const Page2 = ({ data = {} }) => {
     const { parse } = useContext(CTX)
@@ -12,7 +12,6 @@ export const Page2 = ({ data = {} }) => {
             <Breadcrumbs path={URL_PATH} />
             <h1>Page 2</h1>
             <pre>{JSON.stringify(data, null, 2)}</pre>
-            <FormInput />
         </div>
     )
 }
