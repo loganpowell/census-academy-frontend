@@ -199,7 +199,7 @@ export const routerCfg = async url => {
                         URL_PAGE: () => {
                             if (courses_path.length === 1) return Courses
                             if (courses_path.length === 2) return CourseOverview
-                            if (courses_path.length === 3) return Course
+                            if (courses_path.length >= 3) return Course
                         },
                     },
                 ],
