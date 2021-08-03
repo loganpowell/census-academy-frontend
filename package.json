@@ -68,5 +68,6 @@
         "tabWidth": 4,
         "semi": false,
         "arrowParens": "avoid"
-    }
+    },
+    "homepage": "https://loganpowell.github.io/census-academy-frontend"
 }
