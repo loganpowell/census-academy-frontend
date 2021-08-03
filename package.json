@@ -27,7 +27,7 @@
     },
     "scripts": {
         "start": "craco start",
-        "build": "craco build && mv build/* docs",
+        "build": "rm -rf docs/* && craco build && mv build/* docs",
         "test": "craco test",
         "types": "tsc --project tsconfig.json",
         "eject": "react-scripts eject"
