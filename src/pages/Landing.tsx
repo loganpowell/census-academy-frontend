@@ -64,11 +64,6 @@ const DataTopicsHeader = styled.h2`
 export const Landing = ({ children }) => (
     <>
         <Row>
-            <Col span={24} style={{ textAlign: "center" }}>
-                <small style={{ fontWeight: "bold" }}>This is a development prototype!</small>
-            </Col>
-        </Row>
-        <Row>
             <StyledHero span={24}>
                 <HeroHeader>Census Academy</HeroHeader>
                 <HeroSubHeading>Your Virtual Hub for Learnign Data Skills</HeroSubHeading>

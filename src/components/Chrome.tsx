@@ -9,7 +9,7 @@ import { Breadcrumbs, Header } from "../components"
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components"
 import { CensusAcademyFooter } from "./CensusAcademyFooter"
 
-import { Layout } from "antd"
+import { Layout, Row, Col } from "antd"
 
 const { Content, Footer } = Layout
 
@@ -36,6 +36,13 @@ export const Chrome = ({ authUser, children }) => {
                 className="site-layout"
                 style={{ padding: "0 32px", marginTop: 64, width: "100%" }}
             >
+                <Row>
+                    <Col span={24} style={{ textAlign: "center" }}>
+                        <small style={{ fontWeight: "bold" }}>
+                            This is a development prototype!
+                        </small>
+                    </Col>
+                </Row>
                 <div className="site-layout-background" style={{ minHeight: 380 }}>
                     <CTX.Provider
                         value={{
