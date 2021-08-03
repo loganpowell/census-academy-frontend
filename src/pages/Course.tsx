@@ -9,7 +9,7 @@ const { SubMenu } = Menu
 export const Course = ({ data }) => {
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
-    const { T_OG_TITLE, connectedNodes, courseId, path } = data
+    const { T_OG_TITLE, T_BODY, connectedNodes, courseId, path } = data
     let displayComponent
     console.log("data", data)
 
@@ -18,6 +18,7 @@ export const Course = ({ data }) => {
             displayComponent = (
                 <CourseHome
                     courseTitle={T_OG_TITLE.content}
+                    courseDescription={T_BODY.content}
                     modules={connectedNodes}
                     courseId={courseId}
                 />
@@ -50,7 +51,7 @@ export const Course = ({ data }) => {
                     ))}
                 </Menu>
             </Sider>
-            <Content style={{ marginLeft: "16px" }}>
+            <Content style={{ marginLeft: "16px", maxWidth: "1400px" }}>
                 <Breadcrumbs path={URL_PATH} />
                 {displayComponent}
             </Content>

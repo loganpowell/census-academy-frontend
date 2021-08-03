@@ -2,8 +2,23 @@ import React from "react"
 import styled from "styled-components"
 import { Collapse } from "antd"
 import { Link } from ".."
+import { unified } from "unified"
+import parse from "remark-parse"
+import remark2react from "remark-react"
 
 const { Panel } = Collapse
+
+const StyledTitle = styled.h1`
+    font-size: 1.5rem;
+`
+
+const CourseDescription = styled.div`
+    font-size: 1rem;
+    background: white;
+    padding: 8px;
+    border: thin solid #d9d9d9;
+    margin-bottom: 16px;
+`
 
 const StyledItem = styled.li`
     list-style-type: circle;
@@ -20,13 +35,16 @@ const LinkStyles = {
     bottom: "32px",
 }
 
-export const CourseHome = ({ courseTitle, modules, courseId }) => {
+export const CourseHome = ({ courseTitle, courseDescription, modules, courseId }) => {
     // TODO make this page mobile friendly!!!
     // the antd Layout component is not mobile friendly!!
+    const body = unified().use(parse).use(remark2react).processSync(courseDescription).result
+
     return (
         <>
             {/* populate content with overview of each submodule */}
-            <h1>{courseTitle}</h1>
+            <StyledTitle>{courseTitle}</StyledTitle>
+            <CourseDescription>{body}</CourseDescription>
             <Collapse>
                 {modules.map(module => (
                     <Panel
