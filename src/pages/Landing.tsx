@@ -66,7 +66,7 @@ export const Landing = ({ children }) => (
         <Row>
             <StyledHero span={24}>
                 <HeroHeader>Census Academy</HeroHeader>
-                <HeroSubHeading>Your Virtual Hub for Learnign Data Skills</HeroSubHeading>
+                <HeroSubHeading>Your Virtual Hub for Learning Data Skills</HeroSubHeading>
                 <StyledButton style={{ background: "#048392" }}>Start Learning</StyledButton>
                 <StyledButton style={{ background: "#048392" }}>Request Data Training</StyledButton>
             </StyledHero>

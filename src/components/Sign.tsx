@@ -7,19 +7,6 @@ import { CTX } from "../context"
 import { NAV } from "../commands"
 import { Link } from "./Link"
 
-const required_fields = [
-    {
-        type: "username",
-        placeholder: "john@email.com",
-        required: true,
-        label: "Email Address",
-    },
-    { type: "password", required: true },
-]
-
-const SignIn = () => <AmplifySignIn slot="sign-in" formFields={required_fields} />
-const SignUp = () => <AmplifySignUp slot="sign-up" formFields={required_fields} />
-
 export const SignInButton = ({ style = {} }) => {
     return (
         <Link href="sign-in" style={style}>
