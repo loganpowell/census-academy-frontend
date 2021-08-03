@@ -32,11 +32,11 @@ const {
 export const Header = ({ authState, user }) => {
     return (
         <HEADER style={{ position: "fixed", zIndex: 1, width: "100%", padding: "0 1rem" }}>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[ "2" ]}>
                 <Menu.Item key="1">
                     <a href="/">
                         <img
-                            src={process.env.PUBLIC_URL + "us-census-bureau-logo-white.svg"}
+                            src={process.env.PUBLIC_URL + "/us-census-bureau-logo-white.svg"}
                             alt="US Census Bureau logo"
                             style={{ width: "6rem" }}
                         />
