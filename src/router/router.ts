@@ -222,9 +222,11 @@ export const routerCfg = async url => {
                                 if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
                                     const { T_OG_TITLE } = items
+                                    // not all nodes are guaranteed to have a T_OG_TITLE
+                                    const title = T_OG_TITLE ? T_OG_TITLE.content : moduleId
                                     return {
                                         DOM_HEAD: {
-                                            title: T_OG_TITLE.content,
+                                            title: title,
                                         },
                                         DOM_BODY: {
                                             ...items,

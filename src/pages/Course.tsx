@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react"
 import { CTX } from "../context"
-import { CourseHome, CourseModule, Breadcrumbs, Link } from "../components"
+import { CourseHome, CourseModule, CourseSubmodule, Breadcrumbs, Link } from "../components"
 import { Layout, Menu } from "antd"
 import { MenuItem } from "@material-ui/core"
 
@@ -12,7 +12,6 @@ export const Course = ({ data }) => {
     const { URL_PATH } = context.parse()
     const { T_OG_TITLE, T_BODY, modules, submodules, courseId, path } = data
     let displayComponent
-    console.log("data", data)
 
     if (path.pop() === "home") {
         displayComponent = (
@@ -23,7 +22,7 @@ export const Course = ({ data }) => {
                 courseId={courseId}
             />
         )
-    } else {
+    } else if (path[2] === "module") {
         displayComponent = (
             <CourseModule
                 courseId={courseId}
@@ -31,6 +30,8 @@ export const Course = ({ data }) => {
                 submodules={submodules}
             />
         )
+    } else if (path[2] === "submodule") {
+        displayComponent = <CourseSubmodule />
     }
 
     return (
