@@ -5,6 +5,7 @@ import { Link } from ".."
 import { unified } from "unified"
 import parse from "remark-parse"
 import remark2react from "remark-react"
+import { convert_assets_to_object } from "../../utils"
 
 const { Panel } = Collapse
 
@@ -47,13 +48,17 @@ export const CourseModule = ({ courseId, moduleTitle, submodules }) => {
             <SectionWrapper>
                 <SectionTitle>Module Content</SectionTitle>
                 <ol>
-                    {submodules.map(submodule => (
-                        <StyledItem key={submodule.node.id}>
-                            <Link href={`courses/${courseId}/submodule/${submodule.node.id}`}>
-                                {submodule.node.id}
-                            </Link>
-                        </StyledItem>
-                    ))}
+                    {submodules.map(submodule => {
+                        const items = convert_assets_to_object(submodule.node.assets.items)
+                        const { T_OG_TITLE } = items
+                        return (
+                            <StyledItem key={submodule.node.id}>
+                                <Link href={`courses/${courseId}/submodule/${submodule.node.id}`}>
+                                    {T_OG_TITLE ? T_OG_TITLE.content : submodule.node.id}
+                                </Link>
+                            </StyledItem>
+                        )
+                    })}
                 </ol>
             </SectionWrapper>
         </>
