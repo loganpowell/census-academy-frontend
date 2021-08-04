@@ -5,6 +5,7 @@ import { Link } from ".."
 import { unified } from "unified"
 import parse from "remark-parse"
 import remark2react from "remark-react"
+import { convert_assets_to_object } from "../../utils"
 
 const { Panel } = Collapse
 
@@ -46,35 +47,33 @@ export const CourseHome = ({ courseTitle, courseDescription, modules, courseId }
             <StyledTitle>{courseTitle}</StyledTitle>
             <CourseDescription>{body}</CourseDescription>
             <Collapse>
-                {modules.map(module => (
-                    <Panel
-                        key={module.node.id}
-                        // for the header currently just using node id
-                        // however what would likely be a better choice is
-                        // using a T_OG_TITLE asset on the node
-                        header={module.node.id}
-                    >
-                        <p>What this module will cover:</p>
-                        <ul>
-                            {/* we should not be using the asset id.
-                                    ideally, this would actually be another list
-                                    of connected nodes representing the
-                                    sub modules on this section.
-                                    and on the node itself, it should have a T_OG_TITLE
-                                    asset, which we can use instead of asset id
-                                */}
-                            {module.node.assets?.items.map(asset => (
-                                <StyledItem key={asset.id}>{asset.id}</StyledItem>
-                            ))}
-                        </ul>
-                        <Link
-                            href={`courses/${courseId}/module/${module.node.id}`}
-                            style={LinkStyles}
+                {modules.map(module => {
+                    const items = convert_assets_to_object(module.node.assets.items)
+                    const { T_OG_DESCRIPTION } = items
+                    const description = unified()
+                        .use(parse)
+                        .use(remark2react)
+                        .processSync(T_OG_DESCRIPTION?.content).result
+
+                    return (
+                        <Panel
+                            key={module.node.id}
+                            // for the header currently just using node id
+                            // however what would likely be a better choice is
+                            // using a T_OG_TITLE asset on the node
+                            header={module.node.id}
                         >
-                            Go to Module
-                        </Link>
-                    </Panel>
-                ))}
+                            <p>What this module will cover:</p>
+                            {T_OG_DESCRIPTION ? description : ""}
+                            <Link
+                                href={`courses/${courseId}/module/${module.node.id}`}
+                                style={LinkStyles}
+                            >
+                                Go to Module
+                            </Link>
+                        </Panel>
+                    )
+                })}
             </Collapse>
         </>
     )

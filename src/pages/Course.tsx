@@ -13,6 +13,8 @@ export const Course = ({ data }) => {
     const { T_OG_TITLE, T_OG_DESCRIPTION, T_BODY, modules, submodules, courseId, path } = data
     let displayComponent
 
+    console.log("data", data)
+
     if (path.pop() === "home") {
         displayComponent = (
             <CourseHome
