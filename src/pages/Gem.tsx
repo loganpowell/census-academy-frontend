@@ -26,7 +26,6 @@ const DateText = styled.p`
 `
 
 export const Gem = ({ data }) => {
-    // console.log("Gems data:", data)
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
 

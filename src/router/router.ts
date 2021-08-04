@@ -16,7 +16,7 @@ import { UserDashboard } from "../pages"
 import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
 import { CTX } from "../context"
-import { NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
+import { EdgeType, NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
 
 const { CRUD } = utils
 const dummy_query = {
@@ -162,21 +162,25 @@ export const routerCfg = async url => {
                                     }
                                 }
                             }
-                            // courses content page
-                            if (courses_path.length > 2) {
-                                const id = courses_path[1]
-                                const res = await publicQuery({
+                            // courses home page
+                            if (courses_path.length === 3) {
+                                const courseId = courses_path[1]
+                                const courseNodeInfo = await publicQuery({
                                     query: queries.getNodeByID,
-                                    variables: { id },
+                                    variables: { id: courseId },
                                 })
                                 const {
                                     data: { getNode },
-                                } = res
+                                } = courseNodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
+                                const modules = await node.connections({
+                                    id: courseId,
+                                    edgeType: EdgeType.HAS_PART,
+                                })
                                 if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
-                                    const { T_OG_TITLE, A_VIDEO, T_BODY } = items
+                                    const { T_OG_TITLE } = items
                                     return {
                                         DOM_HEAD: {
                                             title: T_OG_TITLE.content,
@@ -184,8 +188,52 @@ export const routerCfg = async url => {
                                         DOM_BODY: {
                                             ...items,
                                             date: createdAt,
-                                            courseId: id,
+                                            courseId: courseId,
                                             path: courses_path,
+                                            modules: modules,
+                                        },
+                                    }
+                                }
+                            }
+                            // courses module page
+                            if (courses_path.length === 4) {
+                                // to populate sidebar nav
+                                const courseId = courses_path[1]
+                                const modules = await node.connections({
+                                    id: courseId,
+                                    edgeType: EdgeType.HAS_PART,
+                                })
+
+                                const moduleId = courses_path[3]
+                                const moduleNodeInfo = await publicQuery({
+                                    query: queries.getNodeByID,
+                                    variables: { id: moduleId },
+                                })
+                                const {
+                                    data: { getNode },
+                                } = moduleNodeInfo
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+                                const submodules = await node.connections({
+                                    id: moduleId,
+                                    edgeType: EdgeType.HAS_CHILD,
+                                })
+
+                                if (assets.items) {
+                                    const items = convert_assets_to_object(assets.items)
+                                    const { T_OG_TITLE } = items
+                                    // not all nodes are guaranteed to have a T_OG_TITLE
+                                    const title = T_OG_TITLE ? T_OG_TITLE.content : moduleId
+                                    return {
+                                        DOM_HEAD: {
+                                            title: title,
+                                        },
+                                        DOM_BODY: {
+                                            ...items,
+                                            path: courses_path,
+                                            courseId: courseId,
+                                            modules: modules,
+                                            submodules: submodules,
                                         },
                                     }
                                 }
@@ -195,6 +243,7 @@ export const routerCfg = async url => {
                             if (courses_path.length === 1) return Courses
                             if (courses_path.length === 2) return CourseOverview
                             if (courses_path.length === 3) return Course
+                            if (courses_path.length === 4) return Course
                         },
                     },
                 ],

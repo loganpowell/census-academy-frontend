@@ -65,16 +65,10 @@ const LinkStyles = {
 }
 
 export const CourseOverview = ({ data }) => {
-    console.log("Course data:", data)
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
 
-    const { T_OG_DESCRIPTION, T_BODY, T_OG_TITLE, date, courseId } = data
-    const formattedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    }).format(Date.parse(date))
+    const { T_OG_DESCRIPTION, T_BODY, T_OG_TITLE, courseId } = data
     const title = T_OG_TITLE?.content
     const body = unified().use(parse).use(remark2react).processSync(T_BODY?.content).result
 
@@ -114,7 +108,7 @@ export const CourseOverview = ({ data }) => {
             </CourseInfo>
             <Wrapper>
                 <h2 style={{ fontWeight: 500 }}>Course Description</h2>
-                <p>{body}</p>
+                {body}
             </Wrapper>
         </div>
     )

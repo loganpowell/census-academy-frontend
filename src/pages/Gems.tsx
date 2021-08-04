@@ -81,7 +81,6 @@ const SectionHeading = styled.h2`
 `
 
 export const Gems = ({ data }) => {
-    // console.log("Gems data:", data)
     const { parse } = useContext(CTX)
     const { URL_PATH } = parse()
     const items = data
