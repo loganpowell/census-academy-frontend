@@ -205,17 +205,17 @@ export const routerCfg = async url => {
                                 })
 
                                 const moduleId = courses_path[3]
-                                const courseNodeInfo = await publicQuery({
+                                const moduleNodeInfo = await publicQuery({
                                     query: queries.getNodeByID,
                                     variables: { id: moduleId },
                                 })
                                 const {
                                     data: { getNode },
-                                } = courseNodeInfo
+                                } = moduleNodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
                                 const submodules = await node.connections({
-                                    id: courseId,
+                                    id: moduleId,
                                     edgeType: EdgeType.HAS_CHILD,
                                 })
 

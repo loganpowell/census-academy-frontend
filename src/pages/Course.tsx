@@ -24,14 +24,26 @@ export const Course = ({ data }) => {
             />
         )
     } else {
-        displayComponent = <CourseModule moduleTitle={T_OG_TITLE.content} submodules={submodules} />
+        displayComponent = (
+            <CourseModule
+                courseId={courseId}
+                moduleTitle={T_OG_TITLE.content}
+                submodules={submodules}
+            />
+        )
     }
 
     return (
         <Layout style={{ margin: "32px" }}>
-            <Sider style={{ background: "white" }}>
+            {/* these min and max heights are placeholders -- not sure how sidebar nav
+                will look given courses with many, many modules...could be better to
+                not have these styles at all */}
+            <Sider style={{ background: "white", minHeight: "400px", maxHeight: "600px" }}>
                 {/* populate sidebar with sections and navigation */}
                 <Menu mode="inline">
+                    <Menu.Item key={courseId}>
+                        <Link href={`courses/${courseId}/home`}>Course Home</Link>
+                    </Menu.Item>
                     {/* we do not want to use asset ids here,
                         ultimately we want to re-work C_COURSE nodes data structure
                         to have children node, which we then render their
