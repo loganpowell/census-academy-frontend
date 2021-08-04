@@ -15,8 +15,6 @@ export const CourseSubmodule = ({ submodule }) => {
     const id = A_VIDEO?.content.split("/").pop()
     const body = unified().use(parse).use(remark2react).processSync(T_BODY?.content).result
 
-    console.log("course submodule info", submodule)
-
     // TODO
     // should have more robust ways to check assets attached to a node
     // and render + lay them out appropriately (e.g. similar to how we

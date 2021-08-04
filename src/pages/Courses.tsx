@@ -89,7 +89,6 @@ const SectionHeading = styled.h2`
 `
 
 export const Courses = ({ data }) => {
-    // console.log("Gems data:", data)
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
     const items = data
@@ -130,7 +129,6 @@ export const Courses = ({ data }) => {
                             const { type, name, content } = c
                             switch (type) {
                                 case "T_BODY": {
-                                    //  console.log("content:", content)
                                     const b = unified()
                                         .use(parse)
                                         .use(remark2react)
@@ -153,7 +151,6 @@ export const Courses = ({ data }) => {
                         { cover: null, title: null, body: null }
                     )
 
-                    console.log("cover", cover)
                     return (
                         <Col sm={24} key={index}>
                             <CourseCard
