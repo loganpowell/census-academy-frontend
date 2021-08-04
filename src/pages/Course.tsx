@@ -10,7 +10,7 @@ const { SubMenu } = Menu
 export const Course = ({ data }) => {
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
-    const { T_OG_TITLE, T_BODY, modules, courseId, path } = data
+    const { T_OG_TITLE, T_BODY, modules, submodules, courseId, path } = data
     let displayComponent
     console.log("data", data)
 
@@ -23,6 +23,8 @@ export const Course = ({ data }) => {
                 courseId={courseId}
             />
         )
+    } else {
+        displayComponent = <CourseModule moduleTitle={T_OG_TITLE.content} submodules={submodules} />
     }
 
     return (

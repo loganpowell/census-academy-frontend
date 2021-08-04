@@ -162,7 +162,7 @@ export const routerCfg = async url => {
                                     }
                                 }
                             }
-                            // courses content page
+                            // courses home page
                             if (courses_path.length === 3) {
                                 const courseId = courses_path[1]
                                 const courseNodeInfo = await publicQuery({
@@ -195,11 +195,53 @@ export const routerCfg = async url => {
                                     }
                                 }
                             }
+                            // courses module page
+                            if (courses_path.length === 4) {
+                                // to populate sidebar nav
+                                const courseId = courses_path[1]
+                                const modules = await node.connections({
+                                    id: courseId,
+                                    edgeType: EdgeType.HAS_PART,
+                                })
+
+                                const moduleId = courses_path[3]
+                                const courseNodeInfo = await publicQuery({
+                                    query: queries.getNodeByID,
+                                    variables: { id: moduleId },
+                                })
+                                const {
+                                    data: { getNode },
+                                } = courseNodeInfo
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+                                const submodules = await node.connections({
+                                    id: courseId,
+                                    edgeType: EdgeType.HAS_CHILD,
+                                })
+
+                                if (assets.items) {
+                                    const items = convert_assets_to_object(assets.items)
+                                    const { T_OG_TITLE } = items
+                                    return {
+                                        DOM_HEAD: {
+                                            title: T_OG_TITLE.content,
+                                        },
+                                        DOM_BODY: {
+                                            ...items,
+                                            path: courses_path,
+                                            courseId: courseId,
+                                            modules: modules,
+                                            submodules: submodules,
+                                        },
+                                    }
+                                }
+                            }
                         },
                         URL_PAGE: () => {
                             if (courses_path.length === 1) return Courses
                             if (courses_path.length === 2) return CourseOverview
                             if (courses_path.length === 3) return Course
+                            if (courses_path.length === 4) return Course
                         },
                     },
                 ],
