@@ -163,19 +163,19 @@ export const routerCfg = async url => {
                                 }
                             }
                             // courses content page
-                            if (courses_path.length > 2) {
-                                const id = courses_path[1]
-                                const nodeInfo = await publicQuery({
+                            if (courses_path.length === 3) {
+                                const courseId = courses_path[1]
+                                const courseNodeInfo = await publicQuery({
                                     query: queries.getNodeByID,
-                                    variables: { id },
+                                    variables: { id: courseId },
                                 })
                                 const {
                                     data: { getNode },
-                                } = nodeInfo
+                                } = courseNodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
-                                const connectedNodes = await node.connections({
-                                    id: id,
+                                const modules = await node.connections({
+                                    id: courseId,
                                     edgeType: EdgeType.HAS_PART,
                                 })
                                 if (assets.items) {
@@ -188,9 +188,9 @@ export const routerCfg = async url => {
                                         DOM_BODY: {
                                             ...items,
                                             date: createdAt,
-                                            courseId: id,
+                                            courseId: courseId,
                                             path: courses_path,
-                                            connectedNodes: connectedNodes,
+                                            modules: modules,
                                         },
                                     }
                                 }
@@ -199,7 +199,7 @@ export const routerCfg = async url => {
                         URL_PAGE: () => {
                             if (courses_path.length === 1) return Courses
                             if (courses_path.length === 2) return CourseOverview
-                            if (courses_path.length >= 3) return Course
+                            if (courses_path.length === 3) return Course
                         },
                     },
                 ],

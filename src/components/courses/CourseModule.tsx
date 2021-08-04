@@ -1,9 +1,9 @@
 import React from "react"
 
-export const CourseContent = () => {
+export const CourseModule = () => {
     return (
         <div>
-            <h1>Course Content</h1>
+            <h1>Course Module</h1>
         </div>
     )
 }
