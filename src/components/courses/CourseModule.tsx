@@ -30,20 +30,18 @@ const StyledItem = styled.li`
     margin-left: 32px;
 `
 
-export const CourseModule = ({ courseId, moduleTitle, submodules }) => {
+export const CourseModule = ({ courseId, moduleTitle, moduleDescription, submodules }) => {
     return (
         <>
-            <StyledTitle>{moduleTitle}</StyledTitle>
+            <StyledTitle>{moduleTitle ? moduleTitle : "Module Title"}</StyledTitle>
             {/* this lorem ipsum text should be replaced with a T_OG_DESCRIPTION asset that is
                 attached to a module node */}
-            <SectionWrapper>
-                <SectionTitle>Module Description</SectionTitle>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </SectionWrapper>
+            {moduleDescription && (
+                <SectionWrapper>
+                    <SectionTitle>Module Description</SectionTitle>
+                    <p>{moduleDescription}</p>
+                </SectionWrapper>
+            )}
 
             <SectionWrapper>
                 <SectionTitle>Module Content</SectionTitle>

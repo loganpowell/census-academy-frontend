@@ -10,7 +10,7 @@ const { SubMenu } = Menu
 export const Course = ({ data }) => {
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
-    const { T_OG_TITLE, T_BODY, modules, submodules, courseId, path } = data
+    const { T_OG_TITLE, T_OG_DESCRIPTION, T_BODY, modules, submodules, courseId, path } = data
     let displayComponent
 
     if (path.pop() === "home") {
@@ -26,7 +26,8 @@ export const Course = ({ data }) => {
         displayComponent = (
             <CourseModule
                 courseId={courseId}
-                moduleTitle={T_OG_TITLE.content}
+                moduleTitle={T_OG_TITLE?.content}
+                moduleDescription={T_OG_DESCRIPTION?.content}
                 submodules={submodules}
             />
         )
