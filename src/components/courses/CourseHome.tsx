@@ -21,10 +21,6 @@ const CourseDescription = styled.div`
     margin-bottom: 16px;
 `
 
-const StyledItem = styled.li`
-    list-style-type: circle;
-    margin-left: 32px;
-`
 const LinkStyles = {
     color: "white",
     fontSize: ".8rem",
