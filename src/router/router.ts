@@ -11,13 +11,11 @@ import { node, API, utils } from "cope-client-utils"
 //import { Chrome } from "../layout"
 import { queries } from "../graphql"
 import { log, convert_assets_to_object } from "../utils"
-import { Page1, Page2, Page3, SignIn, Gems, Landing, Gem, Error404, Course } from "../pages"
+import { SignIn, Gems, Landing, Gem, Error404, Course } from "../pages"
 import { UserDashboard } from "../pages"
 import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
-import { CTX } from "../context"
 import { EdgeType, NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
-import { collapse } from "cope-client-utils/lib/utils"
 
 const { CRUD } = utils
 const dummy_query = {
@@ -350,22 +348,6 @@ export const routerCfg = async url => {
                             }
                         },
                         URL_PAGE: () => SignIn,
-                    },
-                ],
-                [
-                    { ...match, URL_PATH: ["page2"] },
-                    {
-                        URL_DATA: async () => {
-                            const list = await utils.CRUD(dummy_query)
-                            return {
-                                DOM_HEAD: {
-                                    title: "Page 1",
-                                    og_description: "Description for Open Graph/sharing",
-                                },
-                                DOM_BODY: { data: list },
-                            }
-                        },
-                        URL_PAGE: () => Page2,
                     },
                 ],
                 [
