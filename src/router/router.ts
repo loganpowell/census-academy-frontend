@@ -17,6 +17,7 @@ import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
 import { CTX } from "../context"
 import { EdgeType, NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
+import { collapse } from "cope-client-utils/lib/utils"
 
 const { CRUD } = utils
 const dummy_query = {
@@ -196,7 +197,7 @@ export const routerCfg = async url => {
                                 }
                             }
                             // courses module page
-                            if (courses_path.length === 4) {
+                            if (courses_path.length === 4 && courses_path[2] === "module") {
                                 // to populate sidebar nav
                                 const courseId = courses_path[1]
                                 const modules = await node.connections({
@@ -234,6 +235,69 @@ export const routerCfg = async url => {
                                             courseId: courseId,
                                             modules: modules,
                                             submodules: submodules,
+                                        },
+                                    }
+                                }
+                            }
+                            // courses submodule page
+                            if (courses_path.length === 4 && courses_path[2] === "submodule") {
+                                // to populate sidebar nav
+                                const courseId = courses_path[1]
+                                const modules = await node.connections({
+                                    id: courseId,
+                                    edgeType: EdgeType.HAS_PART,
+                                })
+
+                                const moduleId = courses_path[3]
+                                const moduleNodeInfo = await publicQuery({
+                                    query: queries.getNodeByID,
+                                    variables: { id: moduleId },
+                                })
+                                const {
+                                    data: { getNode },
+                                } = moduleNodeInfo
+                                const { status, type, createdAt, updatedAt, owner, assets } =
+                                    getNode
+
+                                const connectedNodes = await publicQuery({
+                                    query: queries.getConnectedNodes,
+                                    variables: { id: moduleId },
+                                })
+
+                                const next = connectedNodes?.data?.getNode?.edges?.items
+                                    .filter(item => item.edge.type === "HAS_NEXT")
+                                    .map(item => ({
+                                        type: item.edge.type,
+                                        fromNode: item.edge.nodes.items[0].node.id,
+                                        toNode: item.edge.nodes.items[1].node.id,
+                                    }))
+                                    .filter(item => item.fromNode === moduleId)
+
+                                const prev = connectedNodes?.data?.getNode?.edges?.items
+                                    .filter(item => item.edge.type === "HAS_PREVIOUS")
+                                    .map(item => ({
+                                        type: item.edge.type,
+                                        fromNode: item.edge.nodes.items[0].node.id,
+                                        toNode: item.edge.nodes.items[1].node.id,
+                                    }))
+                                    .filter(item => item.toNode === moduleId)
+
+                                if (assets.items) {
+                                    const items = convert_assets_to_object(assets.items)
+                                    const { T_OG_TITLE } = items
+                                    // not all nodes are guaranteed to have a T_OG_TITLE
+                                    const title = T_OG_TITLE ? T_OG_TITLE.content : moduleId
+                                    return {
+                                        DOM_HEAD: {
+                                            title: title,
+                                        },
+                                        DOM_BODY: {
+                                            ...items,
+                                            path: courses_path,
+                                            courseId: courseId,
+                                            modules: modules,
+                                            next: next,
+                                            prev: prev,
                                         },
                                     }
                                 }

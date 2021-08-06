@@ -10,7 +10,17 @@ const { SubMenu } = Menu
 export const Course = ({ data }) => {
     const context = useContext(CTX)
     const { URL_PATH } = context.parse()
-    const { T_OG_TITLE, T_OG_DESCRIPTION, T_BODY, modules, submodules, courseId, path } = data
+    const {
+        T_OG_TITLE,
+        T_OG_DESCRIPTION,
+        T_BODY,
+        modules,
+        submodules,
+        courseId,
+        path,
+        prev,
+        next,
+    } = data
     let displayComponent
 
     console.log("data", data)
@@ -34,7 +44,7 @@ export const Course = ({ data }) => {
             />
         )
     } else if (path[2] === "submodule") {
-        displayComponent = <CourseSubmodule submodule={data} />
+        displayComponent = <CourseSubmodule submodule={data} prev={prev} next={next} />
     }
 
     return (

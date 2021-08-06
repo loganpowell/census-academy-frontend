@@ -32,7 +32,7 @@ const LinkStyles = {
     margin: "0 8px",
 }
 
-export const CourseSubmodule = ({ submodule }) => {
+export const CourseSubmodule = ({ submodule, prev, next }) => {
     const { T_OG_TITLE, T_BODY, A_VIDEO } = submodule
     const id = A_VIDEO?.content.split("/").pop()
     const body = unified().use(parse).use(remark2react).processSync(T_BODY?.content).result
@@ -44,12 +44,26 @@ export const CourseSubmodule = ({ submodule }) => {
     return (
         <SectionWrapper>
             <StyledHeader>{T_OG_TITLE ? T_OG_TITLE.content : "Course Submodule"}</StyledHeader>
-            <Link style={LinkStyles} href="#">
-                Next
-            </Link>
-            <Link style={LinkStyles} href="#">
-                Previous
-            </Link>
+            {next.length !== 0 && (
+                <Link
+                    style={LinkStyles}
+                    // TODO refactor!!
+                    // not a clean implementation!! next and prev are arrays with
+                    // objects in them, when we really would just like the object
+                    // this works for now but really need to refactor this
+                    href={`courses/${submodule.courseId}/submodule/${next[0].toNode}`}
+                >
+                    Next
+                </Link>
+            )}
+            {prev.length !== 0 && (
+                <Link
+                    style={LinkStyles}
+                    href={`courses/${submodule.courseId}/submodule/${prev[0].fromNode}`}
+                >
+                    Previous
+                </Link>
+            )}
 
             {A_VIDEO && (
                 <Wrapper>
