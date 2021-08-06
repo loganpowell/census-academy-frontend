@@ -121,14 +121,6 @@ export const Gems = ({ data }) => {
                         (a, c) => {
                             const { type, name, content } = c
                             switch (type) {
-                                // case "T_BODY": {
-                                //     //  console.log("content:", content)
-                                //     const b = unified()
-                                //         .use(parse)
-                                //         .use(remark2react)
-                                //         .processSync(content).result
-                                //     return (a.body = b), a
-                                // }
                                 case "A_VIDEO": {
                                     const parts = content.split("/")
                                     const id = parts[parts.length - 1]
