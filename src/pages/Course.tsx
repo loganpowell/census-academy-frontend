@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react"
 import { CTX } from "../context"
 import { CourseHome, CourseModule, CourseSubmodule, Breadcrumbs, Link } from "../components"
 import { Layout, Menu } from "antd"
-import { MenuItem } from "@material-ui/core"
 
 const { Content, Sider } = Layout
 const { SubMenu } = Menu
@@ -56,11 +55,6 @@ export const Course = ({ data }) => {
                     <Menu.Item key={courseId}>
                         <Link href={`courses/${courseId}/home`}>Course Home</Link>
                     </Menu.Item>
-                    {/* we do not want to use asset ids here,
-                        ultimately we want to re-work C_COURSE nodes data structure
-                        to have children node, which we then render their
-                        titles, instead of IDs
-                    */}
                     {/* TODO
                         write logic to get nodes connected to module nodes
                         then display submodule titles in submenu items that a user
