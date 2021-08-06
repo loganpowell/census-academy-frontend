@@ -1,8 +1,7 @@
-import React, { useEffect, useContext } from "react"
+import React, { useContext } from "react"
 import { CTX } from "../context"
 import { CourseHome, CourseModule, CourseSubmodule, Breadcrumbs, Link } from "../components"
 import { Layout, Menu } from "antd"
-import { MenuItem } from "@material-ui/core"
 
 const { Content, Sider } = Layout
 const { SubMenu } = Menu

@@ -2,12 +2,11 @@
     "name": "census-academy-frontend",
     "version": "0.1.0",
     "private": true,
-    "homepage": ".",
+    "homepage": "https://loganpowell.github.io/census-academy-frontend",
     "dependencies": {
         "@-0/browser": "^0.3.17",
         "@aws-amplify/ui-components": "^1.7.1",
         "@aws-amplify/ui-react": "^1.2.8",
-        "@material-ui/core": "^4.12.3",
         "antd": "^4.16.10",
         "aws-amplify": "^4.2.2",
         "cope-client-utils": "^0.2.24",
@@ -33,10 +32,17 @@
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
-        "extends": [ "react-app", "react-app/jest" ]
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
     },
     "browserslist": {
-        "production": [ ">0.2%", "not dead", "not op_mini all" ],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
         "development": [
             "last 1 chrome version",
             "last 1 firefox version",
@@ -68,6 +74,5 @@
         "tabWidth": 4,
         "semi": false,
         "arrowParens": "avoid"
-    },
-    "homepage": "https://loganpowell.github.io/census-academy-frontend"
+    }
 }
