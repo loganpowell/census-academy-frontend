@@ -7,7 +7,7 @@ import * as K from "@-0/keys"
 
 import { CTX } from "../context"
 import { log } from "../utils"
-import { Page1 } from "../pages"
+import { Landing } from "../pages"
 import { useCursor } from "../hooks"
 
 //prettier-ignore
@@ -17,7 +17,7 @@ export const Provider = ({ children, CFG = {} }) => {
     // ⬆ ⚠ can't refer to the root node (circular reference)
 
     // default wrapper for pages before they are specified
-    const DefaultView = CFG[K.CFG_VIEW] || Page1
+    const DefaultView = CFG[K.CFG_VIEW] || Landing
     const router      = CFG[K.CFG_RUTR]
     // clean URL
     const knowns      = Object.values(K.CFG) || []
