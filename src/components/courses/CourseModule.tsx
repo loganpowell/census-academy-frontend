@@ -23,6 +23,7 @@ const SectionWrapper = styled.div`
     padding: 8px;
     border: thin solid #d9d9d9;
     margin-bottom: 16px;
+    max-width: 1000px;
 `
 
 const StyledItem = styled.li`

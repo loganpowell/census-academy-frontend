@@ -41,17 +41,18 @@ export const getNodeByID = /* GraphQL */ `
     }
 `
 
-export const getConnectedNodesByNodeId = /* GraphQL */ `
-    query getConnectedNodesByNodeId($id: ID!) {
-        getConnectedNodes(nodeId: $id) {
+export const getConnectedNodes = /* GraphQL */ `
+    query getNodeByID($id: ID!) {
+        getNode(id: $id) {
             edges {
                 items {
                     edge {
-                        id
                         type
                         nodes {
                             items {
-                                node_id
+                                node {
+                                    id
+                                }
                             }
                         }
                     }
