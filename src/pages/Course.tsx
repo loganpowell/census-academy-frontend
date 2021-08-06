@@ -44,7 +44,7 @@ export const Course = ({ data }) => {
             />
         )
     } else if (path[2] === "submodule") {
-        displayComponent = <CourseSubmodule submodule={data} prev={prev} next={next} />
+        displayComponent = <CourseSubmodule submodule={data} prev={prev[0]} next={next[0]} />
     }
 
     return (

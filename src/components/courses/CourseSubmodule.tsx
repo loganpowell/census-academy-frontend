@@ -44,22 +44,22 @@ export const CourseSubmodule = ({ submodule, prev, next }) => {
     return (
         <SectionWrapper>
             <StyledHeader>{T_OG_TITLE ? T_OG_TITLE.content : "Course Submodule"}</StyledHeader>
-            {next.length !== 0 && (
+            {next && (
                 <Link
                     style={LinkStyles}
                     // TODO refactor!!
                     // not a clean implementation!! next and prev are arrays with
                     // objects in them, when we really would just like the object
                     // this works for now but really need to refactor this
-                    href={`courses/${submodule.courseId}/submodule/${next[0].toNode}`}
+                    href={`courses/${submodule.courseId}/submodule/${next.toNode}`}
                 >
                     Next
                 </Link>
             )}
-            {prev.length !== 0 && (
+            {prev && (
                 <Link
                     style={LinkStyles}
-                    href={`courses/${submodule.courseId}/submodule/${prev[0].fromNode}`}
+                    href={`courses/${submodule.courseId}/submodule/${prev.fromNode}`}
                 >
                     Previous
                 </Link>
