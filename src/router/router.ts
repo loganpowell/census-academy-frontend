@@ -174,11 +174,13 @@ export const routerCfg = async url => {
                                 } = courseNodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
-                                const modules = await node.connections(
-                                    {
-                                        id: courseId,
-                                        edgeType: EdgeType.HAS_PART,
-                                    },
+                                const modules = await node.connections({
+                                    id: courseId,
+                                    edgeType: EdgeType.HAS_PART,
+                                })
+
+                                const test = await node.read(
+                                    { id: courseId },
                                     GRAPHQL_AUTH_MODE.API_KEY
                                 )
 
@@ -195,6 +197,7 @@ export const routerCfg = async url => {
                                             courseId: courseId,
                                             path: courses_path,
                                             modules: modules,
+                                            test: test,
                                         },
                                     }
                                 }

@@ -22,6 +22,8 @@ export const Course = ({ data }) => {
     } = data
     let displayComponent
 
+    console.log("course data", data)
+
     if (path.pop() === "home") {
         displayComponent = (
             <CourseHome
