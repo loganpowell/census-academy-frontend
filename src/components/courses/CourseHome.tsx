@@ -37,6 +37,8 @@ export const CourseHome = ({ courseTitle, courseDescription, modules, courseId }
     // the antd Layout component is not mobile friendly!!
     const body = unified().use(parse).use(remark2react).processSync(courseDescription).result
 
+    console.log("this is the course home page", modules)
+
     return (
         <>
             {/* populate content with overview of each submodule */}

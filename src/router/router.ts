@@ -16,6 +16,7 @@ import { UserDashboard } from "../pages"
 import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
 import { EdgeType, NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
+import { builtinModules } from "module"
 
 const { CRUD } = utils
 const dummy_query = {
@@ -173,14 +174,14 @@ export const routerCfg = async url => {
                                 } = courseNodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
-                                const modules = await node.connections({
-                                    id: courseId,
-                                    edgeType: EdgeType.HAS_PART,
-                                })
+                                const modules = await node.connections(
+                                    {
+                                        id: courseId,
+                                        edgeType: EdgeType.HAS_PART,
+                                    },
+                                    GRAPHQL_AUTH_MODE.API_KEY
+                                )
 
-                                const test = await node.connections({
-                                    id: courseId,
-                                })
                                 if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
                                     const { T_OG_TITLE } = items
