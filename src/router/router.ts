@@ -178,9 +178,6 @@ export const routerCfg = async url => {
                                     edgeType: EdgeType.HAS_PART,
                                 })
 
-                                const test = await node.connections({
-                                    id: courseId,
-                                })
                                 if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
                                     const { T_OG_TITLE } = items
