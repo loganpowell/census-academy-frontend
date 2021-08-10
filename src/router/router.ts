@@ -39,7 +39,7 @@ const publicQuery = ({ query, variables }) =>
 // TODO: return types expected for routerCfg
 export const routerCfg = async url => {
     const session = await Auth.Credentials
-    console.log("session:", { session })
+    // console.log("session:", { session })
     const match = URL2obj(url)
     const { URL_DOMN, URL_FULL, URL_HASH, URL_PATH, URL_QERY, URL_SUBD } = match
 

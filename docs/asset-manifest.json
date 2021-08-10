@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/census-academy-frontend/static/css/main.5a172b51.chunk.css",
-    "main.js": "/census-academy-frontend/static/js/main.56f1b774.chunk.js",
-    "main.js.map": "/census-academy-frontend/static/js/main.56f1b774.chunk.js.map",
+    "main.js": "/census-academy-frontend/static/js/main.ff8db494.chunk.js",
+    "main.js.map": "/census-academy-frontend/static/js/main.ff8db494.chunk.js.map",
     "polyfills-css-shim.js": "/census-academy-frontend/static/js/polyfills-css-shim.d6c31c4a.chunk.js",
     "polyfills-css-shim.js.map": "/census-academy-frontend/static/js/polyfills-css-shim.d6c31c4a.chunk.js.map",
     "runtime-main.js": "/census-academy-frontend/static/js/runtime-main.04c5bf01.js",
@@ -77,12 +77,12 @@
     "static/js/3.273554b4.chunk.js.LICENSE.txt": "/census-academy-frontend/static/js/3.273554b4.chunk.js.LICENSE.txt",
     "static/js/33.294a4213.chunk.js.LICENSE.txt": "/census-academy-frontend/static/js/33.294a4213.chunk.js.LICENSE.txt",
     "static/js/4.a10f2173.chunk.js.LICENSE.txt": "/census-academy-frontend/static/js/4.a10f2173.chunk.js.LICENSE.txt",
-    "static/js/main.56f1b774.chunk.js.LICENSE.txt": "/census-academy-frontend/static/js/main.56f1b774.chunk.js.LICENSE.txt"
+    "static/js/main.ff8db494.chunk.js.LICENSE.txt": "/census-academy-frontend/static/js/main.ff8db494.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.04c5bf01.js",
     "static/js/3.273554b4.chunk.js",
     "static/css/main.5a172b51.chunk.css",
-    "static/js/main.56f1b774.chunk.js"
+    "static/js/main.ff8db494.chunk.js"
   ]
 }
