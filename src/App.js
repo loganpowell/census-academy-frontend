@@ -12,11 +12,11 @@ import { Chrome, View } from "./components"
 const HUB = stream()
 
 const AUTH_REDIR = registerCMD({
-    sub$ : "AUTH_REDIR",
-    args : payload => payload,
-    src$ : HUB,
-    work : ({ data, event, message }) => {
-        console.log({ data, event, message })
+    sub$: "AUTH_REDIR",
+    args: payload => payload,
+    src$: HUB,
+    work: ({ data, event, message }) => {
+        // console.log({ data, event, message })
         if (event === "signIn") {
             window.history.back()
             return false
@@ -28,7 +28,7 @@ const AUTH_REDIR = registerCMD({
 //log$.subscribe(trace("log$:"))
 
 const App = () => {
-    let [ authUser, setAuthUser ] = useState(null)
+    let [authUser, setAuthUser] = useState(null)
     useEffect(() => {
         const update = async AS => {
             try {
