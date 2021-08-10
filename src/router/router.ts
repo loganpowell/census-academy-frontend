@@ -16,6 +16,7 @@ import { UserDashboard } from "../pages"
 import { Courses, CourseOverview } from "../pages"
 import { About } from "../pages"
 import { EdgeType, NodeStatus, NodeType } from "cope-client-utils/lib/graphql/API"
+import { builtinModules } from "module"
 
 const { CRUD } = utils
 const dummy_query = {
@@ -173,10 +174,13 @@ export const routerCfg = async url => {
                                 } = courseNodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
-                                const modules = await node.connections({
-                                    id: courseId,
-                                    edgeType: EdgeType.HAS_PART,
-                                })
+                                const modules = await node.connections(
+                                    {
+                                        id: courseId,
+                                        edgeType: EdgeType.HAS_PART,
+                                    },
+                                    GRAPHQL_AUTH_MODE.API_KEY
+                                )
 
                                 if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
@@ -199,10 +203,13 @@ export const routerCfg = async url => {
                             if (courses_path.length === 4 && courses_path[2] === "module") {
                                 // to populate sidebar nav
                                 const courseId = courses_path[1]
-                                const modules = await node.connections({
-                                    id: courseId,
-                                    edgeType: EdgeType.HAS_PART,
-                                })
+                                const modules = await node.connections(
+                                    {
+                                        id: courseId,
+                                        edgeType: EdgeType.HAS_PART,
+                                    },
+                                    GRAPHQL_AUTH_MODE.API_KEY
+                                )
 
                                 const moduleId = courses_path[3]
                                 const moduleNodeInfo = await publicQuery({
@@ -214,10 +221,13 @@ export const routerCfg = async url => {
                                 } = moduleNodeInfo
                                 const { status, type, createdAt, updatedAt, owner, assets } =
                                     getNode
-                                const submodules = await node.connections({
-                                    id: moduleId,
-                                    edgeType: EdgeType.HAS_CHILD,
-                                })
+                                const submodules = await node.connections(
+                                    {
+                                        id: moduleId,
+                                        edgeType: EdgeType.HAS_CHILD,
+                                    },
+                                    GRAPHQL_AUTH_MODE.API_KEY
+                                )
 
                                 if (assets.items) {
                                     const items = convert_assets_to_object(assets.items)
@@ -242,10 +252,13 @@ export const routerCfg = async url => {
                             if (courses_path.length === 4 && courses_path[2] === "submodule") {
                                 // to populate sidebar nav
                                 const courseId = courses_path[1]
-                                const modules = await node.connections({
-                                    id: courseId,
-                                    edgeType: EdgeType.HAS_PART,
-                                })
+                                const modules = await node.connections(
+                                    {
+                                        id: courseId,
+                                        edgeType: EdgeType.HAS_PART,
+                                    },
+                                    GRAPHQL_AUTH_MODE.API_KEY
+                                )
 
                                 const moduleId = courses_path[3]
                                 const moduleNodeInfo = await publicQuery({
