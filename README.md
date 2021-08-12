@@ -1,50 +1,47 @@
-# Live Demo
+# Create Once Publish Everywhere (COPE) / Reimagining Census Academy
 
-- https://loganpowell.github.io/census-academy-frontend/
+The U.S. Census Bureau is home to a wide and diverse array of products and services that empower the American people by providing quality, timely data on the most relevant issues of the day. Yet, many individuals do not know where or how to access these data themselves, or how they might generate insight from them. Census Academy addresses this problem by providing educational resources on the kinds of data available and how to access them, and promotes helpful tools that leverage U.S. Census Bureau data. Create Once Publish Everywhere (COPE)/Reimagining Census Academy hopes to expand on the great work already being done at the U.S. Census Bureau by providing a low-cost, flexible, built-with-modern-tooling platform that allows for more engaging educational and digital experiences.
 
-# Getting Started with Create React App
+## Live Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-   https://loganpowell.github.io/census-academy-frontend/
 
-## Available Scripts
+## Tech Stack
 
-In the project directory, you can run:
+-   [AWS Amplify](https://aws.amazon.com/amplify/)
+-   [React](https://reactjs.org/)
+-   [Ant Design](https://ant.design/)
 
-### `yarn start`
+## Running this project locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Pre-reqs**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-   Install [Node.js](https://nodejs.org/en/) on your machine. Confirm you have installed it correctly and have `node package manager` from the command line by running: `npm -v` in the terminal of your choice
+-   Install [Git](https://git-scm.com/downloads) on your machine. Confirm you have installed it correctly by running `git --version` in your command line.
 
-### `yarn test`
+**Local Installation**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. `git clone git@github.com:tnguyen21/cope-frontend-mockup.git`
+2. `cd cope-frontend-mockup`
+3. `npm install`
+4. `npm start`
 
-### `yarn build`
+If you don't run into errors running the commands above, then the application should open up in a browser @ `localhost:3000/`. Happy developing!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deploying this project to GH pages
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To update the demo with the most recent changes, please follow the steps below.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Navigate to this project directory on your local machine.
+2. `git checkout -b misc/build-and-deploy`
+3. `npm install`
+4. `npm run build` _Note, this build process takes a while and will produce a lot of changes to `docs`_
+5. `git add .` _Add all the changed files from `docs`_
+6. `git commit`
+7. `git push -u origin misc/build-and-deploy`
+8. Create a pull request on [GitHub](https://github.com/loganpowell/census-academy-frontend) to `main` of `loganpowell/census-academy-frontend`
+9. Once the pull request has been merged, GitHub pages will kickoff the deployment process.
 
-### `yarn eject`
+At this point, [check deployments on GitHub pages](https://github.com/loganpowell/census-academy-frontend/deployments/activity_log?environment=github-pages) to ensure that the build has finished building and deploying to GitHub pages.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+_Note: Creating a new branch for the build and merging it back to main is to trigger the GitHub pages build and deploy process_
